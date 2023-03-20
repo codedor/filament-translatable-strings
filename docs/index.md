@@ -1,4 +1,4 @@
-# :package_description
+# This package manages translatable strings in Filament.
 
 ## Introduction
 
