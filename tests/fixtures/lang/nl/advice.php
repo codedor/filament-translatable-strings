@@ -2,4 +2,4 @@
 
 return [
     'test' => 'test string nl',
-  ];
+];
