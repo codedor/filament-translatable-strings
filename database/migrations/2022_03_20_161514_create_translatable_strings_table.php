@@ -8,11 +8,14 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('package_table', function (Blueprint $table) {
+        Schema::create('translatable_strings', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-
-            // add fields
+            $table->string('scope')->nullable();
+            $table->string('name');
+            $table->string('key')->nullable();
+            $table->json('value');
+            $table->boolean('is_html');
         });
     }
 };

@@ -11,10 +11,6 @@ class TestCase extends Orchestra
     protected function setUp(): void
     {
         parent::setUp();
-
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Codedor\\TranslatableStrings\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
-        );
     }
 
     protected function getPackageProviders($app)
@@ -32,5 +28,11 @@ class TestCase extends Orchestra
         $migration = include __DIR__.'/../database/migrations/create_filament-translatable-strings_table.php.stub';
         $migration->up();
         */
+        // $app['config']->set('database.default', 'sqlite');
+        // $app['config']->set('database.connections.sqlite', [
+        //     'driver' => 'sqlite',
+        //     'database' => ':memory:',
+        //     'prefix' => '',
+        // ]);
     }
 }

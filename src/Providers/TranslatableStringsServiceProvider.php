@@ -13,6 +13,8 @@ class TranslatableStringsServiceProvider extends PackageServiceProvider
             ->name('filament-translatable-strings')
             ->setBasePath(__DIR__ . '/../')
             ->hasConfigFile()
-            ->hasMigration('create_package_table');
+            ->hasMigration('2022_03_20_161514_create_translatable_strings_table')
+            ->runsMigrations()
+            ->hasTranslations();
     }
 }
