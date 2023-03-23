@@ -31,7 +31,7 @@ it('can map translatable strings for a given scope', function () {
         'name' => 'underscore',
         'key' => 'package::test.underscore',
         'value' => [
-            'en' => 'underscore value'
+            'en' => 'underscore value',
         ],
         'is_html' => false,
     ]);
@@ -42,7 +42,7 @@ it('can map translatable strings for a given scope', function () {
         'key' => 'no package.underscore',
         'value' => [
             'en' => 'underscore en',
-            'nl' => 'underscore nl'
+            'nl' => 'underscore nl',
         ],
         'is_html' => false,
     ]);
@@ -53,7 +53,7 @@ it('can map translatable strings for a given scope', function () {
         'key' => 'no package.value',
         'value' => [
             'en' => 'value en',
-            'nl' => 'value nl'
+            'nl' => 'value nl',
         ],
         'is_html' => false,
     ]);

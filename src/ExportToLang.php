@@ -6,7 +6,6 @@ use Codedor\LocaleCollection\Facades\LocaleCollection;
 use Codedor\LocaleCollection\Locale;
 use Codedor\TranslatableStrings\Models\TranslatableString;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class ExportToLang
@@ -70,7 +69,7 @@ class ExportToLang
                     $path = $path . '/' . $locale . '/' . $filename . '.php';
                 }
                 dump($path);
-                $output = "<?php\n\nreturn " . var_export($strings, true) . ";" . \PHP_EOL;
+                $output = "<?php\n\nreturn " . var_export($strings, true) . ';' . \PHP_EOL;
 
                 $this->files->put($path, $output);
             }
