@@ -13,7 +13,9 @@ class ExtractTranslatableStrings
     const JSON_GROUP = '_json';
 
     protected Collection $groupKeys;
+
     protected Collection $stringKeys;
+
     protected Collection $vendorKeys;
 
     public function __construct(
@@ -207,7 +209,7 @@ class ExtractTranslatableStrings
     protected function saveVendorKeys(): self
     {
         $this->getVendorKeys()->each(function ($vendorKey) {
-            list($scope, $name) = explode('.', $vendorKey['key'], 2);
+            [$scope, $name] = explode('.', $vendorKey['key'], 2);
 
             $this->missingKey(
                 'vendor/' . str_replace('::', '/', $scope),
@@ -224,7 +226,7 @@ class ExtractTranslatableStrings
     protected function saveGroupKeys(): self
     {
         $this->getGroupKeys()->each(function ($groupKey) {
-            list($scope, $name) = explode('.', $groupKey['key'], 2);
+            [$scope, $name] = explode('.', $groupKey['key'], 2);
 
             $this->missingKey(
                 $scope,

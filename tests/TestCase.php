@@ -3,7 +3,6 @@
 namespace Codedor\TranslatableStrings\Tests;
 
 use Codedor\TranslatableStrings\Providers\TranslatableStringsServiceProvider;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
