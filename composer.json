@@ -30,16 +30,16 @@
         "psr-4": {
             "Codedor\\TranslatableStrings\\": "src",
             "Codedor\\TranslatableStrings\\Database\\Factories\\": "database/factories"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
             "Codedor\\TranslatableStrings\\Tests\\": "tests"
         }
     },
-    "files": [
-        "src/helpers.php"
-    ],
     "extra": {
         "laravel": {
             "providers": [
