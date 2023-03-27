@@ -52,7 +52,7 @@ class ExportToLang
                 }
 
                 // $stringsToSave = $strings
-                $output = "<?php\n\nreturn " . var_export($strings->toArray(), true) . ";" . \PHP_EOL;
+                $output = "<?php\n\nreturn " . var_export($strings->toArray(), true) . ';' . \PHP_EOL;
 
                 $this->files->put("{$localePath}.php", $output);
             }
