@@ -84,7 +84,7 @@ it('will export all to the lang directory', function () {
         'name' => 'underscore',
         'key' => 'package::test.underscore',
         'value' => [
-            'en' => 'underscore value'
+            'en' => 'underscore value',
         ],
         'is_html' => false,
     ]);
@@ -95,7 +95,7 @@ it('will export all to the lang directory', function () {
         'key' => 'no package.underscore',
         'value' => [
             'en' => 'underscore en',
-            'nl' => 'underscore nl'
+            'nl' => 'underscore nl',
         ],
         'is_html' => false,
     ]);
@@ -114,7 +114,7 @@ it('will export json scope to the lang directory', function () {
         'key' => 'json',
         'value' => [
             'en' => 'json en',
-            'nl' => 'json nl'
+            'nl' => 'json nl',
         ],
         'is_html' => false,
     ]);
