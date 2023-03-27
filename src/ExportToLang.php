@@ -37,42 +37,24 @@ class ExportToLang
 
             foreach ($translations as $locale => $strings) {
                 $filename = $scope;
-                $localePath = $locale . '/' . $filename;
 
                 if ($vendor) {
                     $groupParts = explode('/', $scope);
                     $filename = $groupParts[2];
                     $path = sprintf('%s/%s/%s', $basePath, $groupParts[0], $groupParts[1]);
-                    $localePath = $groupParts[0] . '/' . $groupParts[1] . '/' . $locale . '/' . $filename;
-                }
-
-                $subfolders = explode('/', $localePath);
-                array_pop($subfolders);
-                $subfolderLevel = '';
-
-                foreach ($subfolders as $subfolder) {
-                    $subfolderLevel = $subfolderLevel . $subfolder . '/';
-
-                    if ($vendor) {
-                        $tempPath = rtrim($path . '/' . $subfolderLevel, '/');
-                    } else {
-                        $tempPath = rtrim($basePath . '/' . $subfolderLevel, '/');
-                    }
-
-                    if (! is_dir($tempPath)) {
-                        mkdir($tempPath, 0777, true);
-                    }
-                }
-
-                if ($vendor) {
-                    $path = $path . '/' . $locale . '/' . $filename . '.php';
+                    $localePath = $basePath . '/' . $groupParts[0] . '/' . $groupParts[1] . '/' . $locale . '/' . $filename;
                 } else {
-                    $path = $path . '/' . $locale . '/' . $filename . '.php';
+                    $localePath = $basePath . '/' . $locale . '/' . $filename;
                 }
-                dump($path);
-                $output = "<?php\n\nreturn " . var_export($strings, true) . ";" . \PHP_EOL;
 
-                $this->files->put($path, $output);
+                if (! $this->files->isDirectory(dirname($localePath))) {
+                    $this->files->makeDirectory(dirname($localePath), 0755, true);
+                }
+
+                // $stringsToSave = $strings
+                $output = "<?php\n\nreturn " . var_export($strings->toArray(), true) . ";" . \PHP_EOL;
+
+                $this->files->put("{$localePath}.php", $output);
             }
         } else {
             $translations = $this->mapTranslatableStringsForScope($scope);
@@ -80,7 +62,7 @@ class ExportToLang
             foreach ($translations as $locale => $strings) {
                 $path = $basePath . '/' . $locale . '.json';
                 $output = json_encode(
-                    $strings,
+                    $strings->toArray(),
                     \JSON_PRETTY_PRINT | \JSON_UNESCAPED_UNICODE
                 );
                 $this->files->put($path, $output);
@@ -88,17 +70,15 @@ class ExportToLang
         }
     }
 
-    public function mapTranslatableStringsForScope(string $scope): array
+    public function mapTranslatableStringsForScope(string $scope): Collection
     {
-        $translations = [];
-        TranslatableString::whereScope($scope)
-            ->get()
-            ->each(function ($translatableString) use (&$translations) {
-                LocaleCollection::each(function (Locale $locale) use ($translatableString, &$translations) {
-                    $translations[$locale->locale()][$translatableString->key] ??= $translatableString->getTranslation('value', $locale->locale(), false);
-                });
-            });
+        $translatableStrings = TranslatableString::whereScope($scope)->get();
 
-        return $translations;
+        return LocaleCollection::mapToGroups(fn (Locale $locale) => [
+            $locale->locale() => $translatableStrings->mapWithKeys(fn ($translatableString) => [
+                $translatableString->name => $translatableString->getTranslation('value', $locale->locale(), false),
+            ]),
+        ])
+            ->mapWithKeys(fn ($item, $locale) => [$locale => $item->first()]);
     }
 }

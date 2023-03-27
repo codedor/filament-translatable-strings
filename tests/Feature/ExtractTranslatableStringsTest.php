@@ -1,12 +1,21 @@
 <?php
 
+use Codedor\LocaleCollection\Facades\LocaleCollection;
+use Codedor\LocaleCollection\Locale;
 use Codedor\TranslatableStrings\ExtractTranslatableStrings;
 use Codedor\TranslatableStrings\Models\TranslatableString;
+
+beforeEach(function () {
+    LocaleCollection::add(new Locale('nl'))
+        ->add(new Locale('en'));
+
+    app()->setLocale('en');
+});
 
 it('can extract strings from the source code', function () {
     expect(
         app(ExtractTranslatableStrings::class)
-            ->find(__DIR__ . '/../../fixtures')
+            ->find(__DIR__ . '/../fixtures')
     )
         ->getGroupKeys()->toArray()->toEqualCanonicalizing([
             ['key' => 'test.trans', 'method' => 'trans'],
@@ -62,7 +71,7 @@ it('can import validation strings', function () {
 
 it('will save strings to the database', function () {
     app(ExtractTranslatableStrings::class)
-        ->find(__DIR__ . '/../../fixtures')
+        ->find(__DIR__ . '/../fixtures')
         ->save();
 
     $this->assertDatabaseCount(TranslatableString::class, 24);

@@ -2,6 +2,8 @@
 
 namespace Codedor\TranslatableStrings;
 
+use Codedor\LocaleCollection\Facades\LocaleCollection;
+use Codedor\LocaleCollection\Locale;
 use Codedor\TranslatableStrings\Models\TranslatableString;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
@@ -97,8 +99,7 @@ class ExtractTranslatableStrings
                 'validation',
                 $key,
                 "validation.{$key}",
-                false,
-                $this->getValue("validation.{$key}"),
+                false
             );
         });
 
@@ -115,7 +116,7 @@ class ExtractTranslatableStrings
         return $this;
     }
 
-    public function missingKey(string $scope, string $name, string $key, bool $isHtml = false, $values = [])
+    public function missingKey(string $scope, string $name, string $key, bool $isHtml = false)
     {
         TranslatableString::flushEventListeners();
 
@@ -125,7 +126,7 @@ class ExtractTranslatableStrings
         ], [
             'key' => $key,
             'is_html' => $isHtml,
-            'value' => $values,
+            'value' => $this->getValue($key),
         ]);
     }
 
@@ -186,22 +187,20 @@ class ExtractTranslatableStrings
         '[\),]'; // Close parentheses or new parameter
     }
 
-    public function getLocales(): array
-    {
-        return config('translatable.locales', []);
-    }
-
     protected function getValue(string $key): array
     {
-        $value = [];
-
-        foreach ($this->getLocales() as $locale) {
-            $translation = app('translator')->get($key, [], $locale, false);
+        return LocaleCollection::mapWithKeys(function (Locale $locale) use ($key) {
+            $translation = app('translator')->get($key, [], $locale->locale(), false);
+            $value = null;
 
             if ($key !== $translation && ! is_array($translation)) {
-                $value[$locale] = $translation;
+                $value = $translation;
             }
-        }
+
+            return [
+                $locale->locale() => $value,
+            ];
+        })->toArray();
 
         return $value;
     }
@@ -215,8 +214,7 @@ class ExtractTranslatableStrings
                 'vendor/' . str_replace('::', '/', $scope),
                 $name,
                 $vendorKey['key'],
-                $this->isHtml($vendorKey['method'], $scope),
-                $this->getValue($vendorKey['key'])
+                $this->isHtml($vendorKey['method'])
             );
         });
 
@@ -232,8 +230,7 @@ class ExtractTranslatableStrings
                 $scope,
                 $name,
                 $groupKey['key'],
-                $this->isHtml($groupKey['method'], $scope),
-                $this->getValue($groupKey['key'])
+                $this->isHtml($groupKey['method'])
             );
         });
 
@@ -248,7 +245,6 @@ class ExtractTranslatableStrings
                 $stringKey['key'],
                 $stringKey['key'],
                 $this->isHtml($stringKey['method']),
-                $this->getValue($stringKey['key'])
             );
         });
 
@@ -270,12 +266,8 @@ class ExtractTranslatableStrings
         return $this->vendorKeys->unique();
     }
 
-    protected function isHtml(string $method, ?string $scope = null): bool
+    protected function isHtml(string $method): bool
     {
-        if ($scope === 'routes') {
-            return false;
-        }
-
         return $this->getHtmlTransFunctions()->contains($method);
     }
 }
