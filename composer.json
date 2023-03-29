@@ -43,7 +43,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Codedor\\TranslatableStrings\\Providers\\TranslatableStringsServiceProvider"
+                "Codedor\\TranslatableStrings\\Providers\\TranslatableStringsServiceProvider",
+                "Codedor\\TranslatableStrings\\Providers\\FilamentServiceProvider"
             ]
         }
     },
