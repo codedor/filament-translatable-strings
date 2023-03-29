@@ -33,7 +33,7 @@ it('can update a translatable string', function () {
             'name' => 'name',
             'nl' => 'new nl value',
             'en' => 'new en value',
-        ])
+        ]),
     ]));
 
     Queue::assertPushed(ExportToLang::class);
