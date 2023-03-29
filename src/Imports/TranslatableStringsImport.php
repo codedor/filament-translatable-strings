@@ -2,6 +2,7 @@
 
 namespace Codedor\TranslatableStrings\Imports;
 
+use Codedor\TranslatableStrings\Imports\Sheets\TranslatableStringScopeSheet;
 use Codedor\TranslatableStrings\Models\TranslatableString;
 use Maatwebsite\Excel\Concerns\SkipsUnknownSheets;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Codedor\TranslatableStrings\Imports;
+namespace Codedor\TranslatableStrings\Imports\Sheets;
 
 use Codedor\LocaleCollection\Facades\LocaleCollection;
 use Codedor\LocaleCollection\Locale;
