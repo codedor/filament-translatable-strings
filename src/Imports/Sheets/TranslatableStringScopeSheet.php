@@ -28,10 +28,6 @@ class TranslatableStringScopeSheet implements ToCollection, WithHeadingRow
                     ->where('scope', $this->scope)
                     ->first();
 
-            if (! $string) {
-                info('string not found', [$row->get('name'), $this->scope]);
-            }
-
             LocaleCollection::each(function (Locale $locale) use ($row, &$string) {
                 if (! $row->has($locale->locale())) {
                     return;
@@ -40,7 +36,6 @@ class TranslatableStringScopeSheet implements ToCollection, WithHeadingRow
                 $string->setTranslation('value', $locale->locale(), $row->get($locale->locale()));
             });
 
-            ray()->showQueries();
             $string->save();
         });
 
