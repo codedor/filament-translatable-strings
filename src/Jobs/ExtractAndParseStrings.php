@@ -16,7 +16,6 @@ class ExtractAndParseStrings implements ShouldQueue
 
     public function __construct()
     {
-
     }
 
     public function handle()
