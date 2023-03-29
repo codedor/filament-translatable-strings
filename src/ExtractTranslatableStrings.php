@@ -191,6 +191,11 @@ class ExtractTranslatableStrings
     {
         return LocaleCollection::mapWithKeys(function (Locale $locale) use ($key) {
             $translation = app('translator')->get($key, [], $locale->locale(), false);
+
+            if ($key === $translation && $locale->urlLocale() !== $locale->locale()) {
+                $translation = app('translator')->get($key, [], $locale->urlLocale(), false);
+            }
+
             $value = null;
 
             if ($key !== $translation && ! is_array($translation)) {
