@@ -51,7 +51,7 @@ class ListTranslatableStrings extends ListRecords
                         Checkbox::make('overwrite')
                             ->label('Overwrite existing strings'),
                     ]),
-            ])
+            ]),
             // export
             //import -> upload + overwrite checkbox
         ];
@@ -76,7 +76,7 @@ class ListTranslatableStrings extends ListRecords
     public function exportStrings()
     {
         return (new TranslatableStringsExport)->download(
-            Str::slug(config('app.name'). '_'  . today()->toDateString(), '_') . '.xlsx',
+            Str::slug(config('app.name') . '_' . today()->toDateString(), '_') . '.xlsx',
             \Maatwebsite\Excel\Excel::XLSX
         );
     }

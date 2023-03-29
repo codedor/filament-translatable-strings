@@ -3,7 +3,6 @@
 namespace Codedor\TranslatableStrings\Jobs;
 
 use Codedor\TranslatableStrings\ExportToLang as TranslatableStringsExportToLang;
-use Codedor\TranslatableStrings\ExtractTranslatableStrings;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -17,9 +16,7 @@ class ExportToLang implements ShouldQueue
 
     public function __construct(
         private ?string $scope = null
-    )
-    {
-
+    ) {
     }
 
     public function handle()

@@ -2,10 +2,10 @@
 
 namespace Codedor\TranslatableStrings\Filament\Resources;
 
-use Codedor\TranslatableStrings\Filament\Resources\TranslatableStringResource\Pages;
-use Codedor\TranslatableStrings\Filament\Resources\TranslatableStringResource\Pages\ListTranslatableStrings;
 use Codedor\LocaleCollection\Facades\LocaleCollection;
 use Codedor\LocaleCollection\Locale;
+use Codedor\TranslatableStrings\Filament\Resources\TranslatableStringResource\Pages;
+use Codedor\TranslatableStrings\Filament\Resources\TranslatableStringResource\Pages\ListTranslatableStrings;
 use Codedor\TranslatableStrings\Models\TranslatableString;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\MarkdownEditor;
