@@ -27,7 +27,7 @@ class TranslatableStringsPerScopeSheet implements FromQuery, WithTitle, WithHead
     {
         return $this->locales
             ->mapWithKeys(fn (string $locale) => [
-                $locale => $translatableString->getTranslation('value', $locale, false)
+                $locale => $translatableString->getTranslation('value', $locale, false),
             ])
             ->prepend($translatableString->name, 'name')
             ->toArray();

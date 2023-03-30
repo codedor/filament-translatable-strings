@@ -5,9 +5,6 @@ use Codedor\LocaleCollection\Locale;
 use Codedor\TranslatableStrings\Imports\Sheets\TranslatableStringScopeSheet;
 use Codedor\TranslatableStrings\Imports\TranslatableStringsImport;
 use Codedor\TranslatableStrings\Models\TranslatableString;
-use Illuminate\Support\Facades\Log;
-use TiMacDonald\Log\LogEntry;
-use TiMacDonald\Log\LogFake;
 
 beforeEach(function () {
     LocaleCollection::push(new Locale('en'))
