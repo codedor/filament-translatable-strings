@@ -23,7 +23,7 @@ class TranslatableString extends Model
     {
         $query->orWhere(
             fn ($query) => LocaleCollection::each(
-                fn (Locale $locale) => $query->whereNull("value->{$locale->locale()}")
+                fn (Locale $locale) => $query->orWhereNull("value->{$locale->locale()}")
             )
         );
     }
@@ -39,9 +39,9 @@ class TranslatableString extends Model
 
     public function scopeByFilledInValues(Builder $query): void
     {
-        $query->whereNot(
+        $query->where(
             fn ($query) => LocaleCollection::each(
-                fn (Locale $locale) => $query->whereNull("value->{$locale->locale()}")
+                fn (Locale $locale) => $query->whereNotNull("value->{$locale->locale()}")
             )
         );
     }

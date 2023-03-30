@@ -2,7 +2,9 @@
 
 namespace Codedor\TranslatableStrings\Tests;
 
+use Codedor\TranslatableStrings\Providers\FilamentServiceProvider;
 use Codedor\TranslatableStrings\Providers\TranslatableStringsServiceProvider;
+use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
@@ -16,6 +18,8 @@ class TestCase extends Orchestra
     {
         return [
             TranslatableStringsServiceProvider::class,
+            FilamentServiceProvider::class,
+            LivewireServiceProvider::class,
         ];
     }
 
