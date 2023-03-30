@@ -56,7 +56,7 @@ it('will skip if no name is given', function () {
         collect([
             'nl' => 'new nl value',
             'en' => 'new en value',
-        ])
+        ]),
     ]));
 
     Queue::assertPushed(ExportToLang::class);
@@ -79,7 +79,7 @@ it('will skip if a locale is missing', function () {
         collect([
             'name' => 'name',
             'en' => 'new en value',
-        ])
+        ]),
     ]));
 
     Queue::assertPushed(ExportToLang::class);

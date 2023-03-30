@@ -4,7 +4,6 @@ namespace Codedor\TranslatableStrings\Imports;
 
 use Codedor\TranslatableStrings\Imports\Sheets\TranslatableStringScopeSheet;
 use Codedor\TranslatableStrings\Models\TranslatableString;
-use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\SkipsUnknownSheets;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use Maatwebsite\Excel\Imports\HeadingRowFormatter;
