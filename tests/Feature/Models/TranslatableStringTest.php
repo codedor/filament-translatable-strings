@@ -40,8 +40,8 @@ it('can find strings where at least one translation is empty', function () {
     expect(TranslatableString::byOneEmptyValue()->get())
         ->toHaveCount(2)
         ->sequence(
-            fn($string) => $string->name->toBe('name'),
-            fn($string) => $string->name->toBe('name3'),
+            fn ($string) => $string->name->toBe('name'),
+            fn ($string) => $string->name->toBe('name3'),
         );
 });
 
@@ -49,7 +49,7 @@ it('can find strings where all translations are empty', function () {
     expect(TranslatableString::byAllEmptyValues()->get())
         ->toHaveCount(1)
         ->sequence(
-            fn($string) => $string->name->toBe('name3'),
+            fn ($string) => $string->name->toBe('name3'),
         );
 });
 
@@ -57,7 +57,7 @@ it('can find strings where all translations are filled in', function () {
     expect(TranslatableString::byFilledInValues()->get())
         ->toHaveCount(1)
         ->sequence(
-            fn($string) => $string->name->toBe('name2'),
+            fn ($string) => $string->name->toBe('name2'),
         );
 });
 
