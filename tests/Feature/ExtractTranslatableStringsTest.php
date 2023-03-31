@@ -15,7 +15,7 @@ beforeEach(function () {
 it('can extract strings from the source code', function () {
     expect(
         app(ExtractTranslatableStrings::class)
-            ->find(__DIR__ . '/../fixtures')
+            ->find(__DIR__ . '/../Fixtures')
     )
         ->getGroupKeys()->toArray()->toEqualCanonicalizing([
             ['key' => 'test.trans', 'method' => 'trans'],
@@ -71,7 +71,7 @@ it('can import validation strings', function () {
 
 it('will save strings to the database', function () {
     app(ExtractTranslatableStrings::class)
-        ->find(__DIR__ . '/../fixtures')
+        ->find(__DIR__ . '/../Fixtures')
         ->save();
 
     $this->assertDatabaseCount(TranslatableString::class, 24);

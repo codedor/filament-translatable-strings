@@ -2,10 +2,19 @@
 
 namespace Codedor\TranslatableStrings\Tests;
 
+use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
+use BladeUI\Icons\BladeIconsServiceProvider;
 use Codedor\TranslatableStrings\Providers\FilamentServiceProvider;
 use Codedor\TranslatableStrings\Providers\TranslatableStringsServiceProvider;
+use Filament\FilamentServiceProvider as BaseFilamentServiceProvider;
+use Filament\Forms\FormsServiceProvider;
+use Filament\Notifications\NotificationsServiceProvider;
+use Filament\SpatieLaravelTranslatablePluginServiceProvider;
+use Filament\Support\SupportServiceProvider;
+use Filament\Tables\TablesServiceProvider;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
+use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -20,6 +29,16 @@ class TestCase extends Orchestra
             TranslatableStringsServiceProvider::class,
             FilamentServiceProvider::class,
             LivewireServiceProvider::class,
+            BladeCaptureDirectiveServiceProvider::class,
+            BladeHeroiconsServiceProvider::class,
+            BladeIconsServiceProvider::class,
+            BaseFilamentServiceProvider::class,
+            FormsServiceProvider::class,
+            LivewireServiceProvider::class,
+            NotificationsServiceProvider::class,
+            SpatieLaravelTranslatablePluginServiceProvider::class,
+            SupportServiceProvider::class,
+            TablesServiceProvider::class,
         ];
     }
 
@@ -27,15 +46,16 @@ class TestCase extends Orchestra
     {
         config()->set('database.default', 'testing');
 
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_filament-translatable-strings_table.php.stub';
-        $migration->up();
-        */
         // $app['config']->set('database.default', 'sqlite');
         // $app['config']->set('database.connections.sqlite', [
         //     'driver' => 'sqlite',
         //     'database' => ':memory:',
         //     'prefix' => '',
         // ]);
+    }
+
+    protected function defineDatabaseMigrations(): void
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/Fixtures/database/migrations/create_users_table.php');
     }
 }

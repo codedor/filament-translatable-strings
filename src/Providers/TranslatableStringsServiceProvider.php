@@ -2,6 +2,7 @@
 
 namespace Codedor\TranslatableStrings\Providers;
 
+use Codedor\TranslatableStrings\Console\Commands\ExtractAndParseTranslatableStrings;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -14,6 +15,7 @@ class TranslatableStringsServiceProvider extends PackageServiceProvider
             ->setBasePath(__DIR__ . '/../')
             ->hasConfigFile()
             ->hasMigration('2022_03_20_161514_create_translatable_strings_table')
+            ->hasCommand(ExtractAndParseTranslatableStrings::class)
             ->runsMigrations()
             ->hasTranslations();
     }
