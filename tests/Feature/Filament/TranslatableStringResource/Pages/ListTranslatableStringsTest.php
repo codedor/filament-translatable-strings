@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Mockery\MockInterface;
-
 use function Pest\Livewire\livewire;
 
 beforeEach(function () {
@@ -101,7 +100,7 @@ it('has an import action that can truncate the table', function () {
         ->assertPageActionExists('import')
         ->callPageAction('import', [
             'overwrite' => true,
-            'file' => ['file' => 'import_truncate.xlsx']
+            'file' => ['file' => 'import_truncate.xlsx'],
         ]);
 
     Notification::assertNotified(
@@ -172,4 +171,3 @@ it('can edit the value inline', function () {
         'value' => json_encode(['en' => 'updated en c value', 'nl' => 'nl c value']),
     ]);
 });
-

@@ -5,7 +5,6 @@ use Codedor\LocaleCollection\Locale;
 use Codedor\LocaleCollection\LocaleCollection as LocaleCollectionLocaleCollection;
 use Codedor\TranslatableStrings\ExtractTranslatableStrings;
 use Codedor\TranslatableStrings\Models\TranslatableString;
-use Illuminate\Support\Str;
 use Illuminate\Translation\Translator;
 use Mockery\MockInterface;
 
