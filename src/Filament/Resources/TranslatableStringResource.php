@@ -34,11 +34,19 @@ class TranslatableStringResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('scope'),
-                TextInput::make('name'),
-                MarkdownEditor::make('value')->hidden(fn (?Model $record) => ! $record?->is_html),
-                TextInput::make('value')->hidden(fn (?Model $record) => $record?->is_html),
-                Checkbox::make('is_html')->disabled(),
+                TextInput::make('scope')
+                    ->disabled()
+                    ->dehydrated(false),
+                TextInput::make('name')
+                    ->disabled()
+                    ->dehydrated(false),
+                MarkdownEditor::make('value')
+                    ->hidden(fn (?Model $record) => ! $record?->is_html),
+                TextInput::make('value')
+                    ->hidden(fn (?Model $record) => $record?->is_html),
+                Checkbox::make('is_html')
+                    ->disabled()
+                    ->dehydrated(false),
             ]);
     }
 
@@ -99,15 +107,5 @@ class TranslatableStringResource extends Resource
     protected static function getNavigationBadge(): ?string
     {
         return static::getModel()::byOneEmptyValue()->count() . ' ' . __('empty');
-    }
-
-    protected function getDefaultTableSortColumn(): ?string
-    {
-        return 'created_at';
-    }
-
-    protected function getDefaultTableSortDirection(): ?string
-    {
-        return 'desc';
     }
 }

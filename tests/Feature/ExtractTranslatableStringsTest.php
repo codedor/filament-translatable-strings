@@ -2,8 +2,12 @@
 
 use Codedor\LocaleCollection\Facades\LocaleCollection;
 use Codedor\LocaleCollection\Locale;
+use Codedor\LocaleCollection\LocaleCollection as LocaleCollectionLocaleCollection;
 use Codedor\TranslatableStrings\ExtractTranslatableStrings;
 use Codedor\TranslatableStrings\Models\TranslatableString;
+use Illuminate\Support\Str;
+use Illuminate\Translation\Translator;
+use Mockery\MockInterface;
 
 beforeEach(function () {
     LocaleCollection::add(new Locale('nl'))
@@ -102,5 +106,31 @@ it('will save strings to the database', function () {
         'name' => 'lang choice',
         'key' => 'lang choice',
         'is_html' => false,
+    ]);
+});
+
+it('fall backs to the url locale if locale translation is not found', function () {
+    LocaleCollection::swap(new LocaleCollectionLocaleCollection([new Locale('en-GB', null, 'en')]));
+
+    $this->instance(
+        'translator',
+        Mockery::mock(Translator::class, function (MockInterface $mock) {
+            $mock->shouldReceive('get')->once()->with('scope.name', [], 'en-GB', false)->andReturn('scope.name');
+            $mock->shouldReceive('get')->once()->with('scope.name', [], 'en', false)->andReturn('en scope');
+        })
+    );
+
+    app(ExtractTranslatableStrings::class)
+        ->missingKey('scope', 'name', 'scope.name', false);
+
+    $this->assertDatabaseCount(TranslatableString::class, 1);
+    $this->assertDatabaseHas(TranslatableString::class, [
+        'scope' => 'scope',
+        'name' => 'name',
+        'key' => 'scope.name',
+        'is_html' => false,
+        'value' => json_encode([
+            'en-GB' => 'en scope',
+        ]),
     ]);
 });

@@ -17,3 +17,9 @@ beforeEach(function () {
 it('has an index page', function () {
     $this->get(TranslatableStringResource::getUrl('index'))->assertSuccessful();
 });
+
+it('has only an index and edit action', function () {
+    expect(TranslatableStringResource::getPages())
+        ->toHaveCount(2)
+        ->toHaveKeys(['index', 'edit']);
+});

@@ -52,8 +52,6 @@ class ListTranslatableStrings extends ListRecords
                             ->label('Overwrite existing strings'),
                     ]),
             ]),
-            // export
-            //import -> upload + overwrite checkbox
         ];
     }
 
@@ -75,7 +73,7 @@ class ListTranslatableStrings extends ListRecords
 
     public function exportStrings()
     {
-        return (new TranslatableStringsExport)->download(
+        return app(TranslatableStringsExport::class)->download(
             Str::slug(config('app.name') . '_' . today()->toDateString(), '_') . '.xlsx',
             \Maatwebsite\Excel\Excel::XLSX
         );
@@ -85,7 +83,9 @@ class ListTranslatableStrings extends ListRecords
     {
         try {
             if ($data['overwrite']) {
-                TranslatableString::truncate();
+                TranslatableString::query()->update([
+                    'value' => '{}',
+                ]);
             }
 
             Excel::import(
@@ -106,5 +106,15 @@ class ListTranslatableStrings extends ListRecords
                 ->danger()
                 ->send();
         }
+    }
+
+    protected function getDefaultTableSortColumn(): ?string
+    {
+        return 'created_at';
+    }
+
+    protected function getDefaultTableSortDirection(): ?string
+    {
+        return 'desc';
     }
 }
