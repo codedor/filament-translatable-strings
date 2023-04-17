@@ -2,7 +2,6 @@
 
 namespace Codedor\TranslatableStrings\Console\Commands;
 
-use Codedor\TranslatableStrings\ExtractTranslatableStrings;
 use Codedor\TranslatableStrings\Jobs\ExtractAndParseStrings;
 use Illuminate\Console\Command;
 
