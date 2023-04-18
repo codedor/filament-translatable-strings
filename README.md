@@ -1,8 +1,6 @@
 # This package manages translatable strings in Filament.
 
-## 
-
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+Package to manage the lang files in [Filament](https://filamentphp.com/) with import and export actions and a command to find them in your code.
 
 ## Installation
 
@@ -29,20 +27,33 @@ This is the contents of the published config file:
 
 ```php
 return [
+    'trans_functions' => [
+        '__',
+        'trans',
+        'trans_choice',
+        'Lang::get',
+        'Lang::choice',
+        '@lang',
+        '@choice',
+    ],
+    'html_trans_functions' => [
+        '__html',
+    ],
+    'exclude_folders' => [
+        'storage',
+        'node_modules',
+        'database',
+        'lang',
+        'vendor/symfony',
+        'tests',
+    ],
 ];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="filament-translatable-strings-views"
 ```
 
 ## Usage
 
-```php
-$translatableStrings = new Codedor\TranslatableStrings();
-echo $translatableStrings->echoPhrase('Hello, Codedor!');
+```bash
+php artisan translatable-strings:extract-and-parse
 ```
 
 ## Documentation
