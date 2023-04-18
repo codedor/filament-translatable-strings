@@ -79,6 +79,6 @@ class ExportToLang
                 $translatableString->name => $translatableString->getTranslation('value', $locale->locale(), false),
             ]),
         ])
-            ->mapWithKeys(fn ($item, $locale) => [$locale => $item->first()]);
+            ->mapWithKeys(fn (Collection $items, string $locale) => [$locale => $items->first()]);
     }
 }
