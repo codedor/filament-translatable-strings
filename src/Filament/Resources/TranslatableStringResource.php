@@ -41,9 +41,9 @@ class TranslatableStringResource extends Resource
                     ->disabled()
                     ->dehydrated(false),
                 MarkdownEditor::make('value')
-                    ->hidden(fn (?Model $record) => ! $record?->is_html),
+                    ->hidden(fn (?TranslatableString $record) => ! $record?->is_html),
                 TextInput::make('value')
-                    ->hidden(fn (?Model $record) => $record?->is_html),
+                    ->hidden(fn (?TranslatableString $record) => $record?->is_html),
                 Checkbox::make('is_html')
                     ->disabled()
                     ->dehydrated(false),
@@ -67,7 +67,7 @@ class TranslatableStringResource extends Resource
 
                         return $state;
                     })
-                    ->disabled(fn (TranslatableString $record) => $record?->is_html),
+                    ->disabled(fn (TranslatableString $record) => $record->is_html),
             ])
             ->filters([
                 TernaryFilter::make('filled_in')

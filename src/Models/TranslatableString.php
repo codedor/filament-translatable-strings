@@ -11,9 +11,17 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Spatie\Translatable\HasTranslations;
 
+/**
+ * @property string $scope
+ * @property string $name
+ * @property bool $is_html
+ * @property array $value
+ */
 class TranslatableString extends Model
 {
     use HasTranslations;
+
+    protected $table = 'translatable_strings';
 
     protected $translatable = ['value'];
 

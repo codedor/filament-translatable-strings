@@ -206,8 +206,6 @@ class ExtractTranslatableStrings
                 $locale->locale() => $value,
             ];
         })->toArray();
-
-        return $value;
     }
 
     protected function saveVendorKeys(): self
