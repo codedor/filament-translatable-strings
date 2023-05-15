@@ -31,10 +31,9 @@ class ExtractTranslatableStrings
     public function find(string $path): self
     {
         // Find all PHP files in the app folder, except for storage
-        $finder = new Finder();
-        $finder
+        $finder = (new Finder())
             ->in($path)
-            ->exclude(config('translations.exclude_folders', []))
+            ->exclude(config('filament-translatable-strings.exclude_folders', []))
             ->name('*.php')
             ->name('*.vue')
             ->files();

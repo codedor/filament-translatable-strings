@@ -96,12 +96,12 @@ class ListTranslatableStrings extends ListRecords
             $this->emit('refreshTable');
 
             Notification::make()
-                ->title(__('Import was successful'))
+                ->title('Import was successful')
                 ->success()
                 ->send();
         } catch (\Throwable $th) {
             Notification::make()
-                ->title(__('Something went wrong during the import'))
+                ->title('Something went wrong during the import')
                 ->body($th->getMessage())
                 ->danger()
                 ->send();
