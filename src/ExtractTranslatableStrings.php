@@ -211,6 +211,10 @@ class ExtractTranslatableStrings
     protected function saveVendorKeys(): self
     {
         $this->getVendorKeys()->each(function ($vendorKey) {
+            if (! Str::contains($vendorKey['key'], '.')) {
+                return;
+            }
+
             [$scope, $name] = explode('.', $vendorKey['key'], 2);
 
             $this->missingKey(
@@ -227,6 +231,10 @@ class ExtractTranslatableStrings
     protected function saveGroupKeys(): self
     {
         $this->getGroupKeys()->each(function ($groupKey) {
+            if (! Str::contains($groupKey['key'], '.')) {
+                return;
+            }
+
             [$scope, $name] = explode('.', $groupKey['key'], 2);
 
             $this->missingKey(
