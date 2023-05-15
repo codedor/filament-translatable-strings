@@ -27,6 +27,6 @@ class ExportToLang implements ShouldQueue
         }
 
         app(TranslatableStringsExportToLang::class)
-                ->exportAll();
+            ->exportAll();
     }
 }
