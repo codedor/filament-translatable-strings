@@ -26,14 +26,10 @@ class ExportToLang
     public function export(string $scope)
     {
         $basePath = lang_path();
+        $translations = $this->mapTranslatableStringsForScope($scope);
 
         if ($scope !== ExtractTranslatableStrings::JSON_GROUP) {
-            $vendor = false;
-            if (Str::startsWith($scope, 'vendor')) {
-                $vendor = true;
-            }
-
-            $translations = $this->mapTranslatableStringsForScope($scope);
+            $vendor = Str::startsWith($scope, 'vendor');
 
             foreach ($translations as $locale => $strings) {
                 $filename = $scope;
@@ -57,14 +53,13 @@ class ExportToLang
                 $this->files->put("{$localePath}.php", $output);
             }
         } else {
-            $translations = $this->mapTranslatableStringsForScope($scope);
-
             foreach ($translations as $locale => $strings) {
                 $path = $basePath . '/' . $locale . '.json';
                 $output = json_encode(
                     $strings->toArray(),
                     \JSON_PRETTY_PRINT | \JSON_UNESCAPED_UNICODE
                 );
+
                 $this->files->put($path, $output);
             }
         }
@@ -75,9 +70,11 @@ class ExportToLang
         $translatableStrings = TranslatableString::whereScope($scope)->get();
 
         return LocaleCollection::mapToGroups(fn (Locale $locale) => [
-            $locale->locale() => $translatableStrings->mapWithKeys(fn ($translatableString) => [
-                $translatableString->name => $translatableString->getTranslation('value', $locale->locale(), false),
-            ]),
+            $locale->locale() => $translatableStrings
+                ->mapWithKeys(fn ($translatableString) => [
+                    $translatableString->name => $translatableString->getTranslation('value', $locale->locale(), false),
+                ])
+                ->filter(),
         ])
             ->mapWithKeys(fn (Collection $items, string $locale) => [$locale => $items->first()]);
     }

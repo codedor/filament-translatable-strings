@@ -5,6 +5,7 @@ namespace Codedor\TranslatableStrings\Models;
 use Codedor\LocaleCollection\Facades\LocaleCollection;
 use Codedor\LocaleCollection\Locale;
 use Codedor\TranslatableStrings\ExtractTranslatableStrings;
+use Codedor\TranslatableStrings\Jobs\ExportToLang;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -92,5 +93,10 @@ class TranslatableString extends Model
             ->orderBy('scope')
             ->get()
             ->mapWithKeys(fn (TranslatableString $string) => [$string->scope => $string->clean_scope]);
+    }
+
+    public static function booted()
+    {
+        self::updated(fn () => ExportToLang::dispatch());
     }
 }

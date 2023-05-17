@@ -25,8 +25,8 @@ class TranslatableStringScopeSheet implements ToCollection, WithHeadingRow
             }
 
             $string = TranslatableString::where('name', $row->get('name'))
-                    ->where('scope', $this->scope)
-                    ->first();
+                ->where('scope', $this->scope)
+                ->first();
 
             LocaleCollection::each(function (Locale $locale) use ($row, &$string) {
                 if (! $row->has($locale->locale())) {
