@@ -97,6 +97,6 @@ class TranslatableString extends Model
 
     public static function booted()
     {
-        self::updated(fn () => ExportToLang::dispatch());
+        self::updated(fn (self $record) => ExportToLang::dispatch($record->scope));
     }
 }

@@ -16,6 +16,7 @@ class TranslatableStringsServiceProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->hasMigration('2022_03_20_161514_create_translatable_strings_table')
             ->hasCommand(ExtractAndParseTranslatableStrings::class)
+            ->hasViews()
             ->runsMigrations()
             ->hasTranslations();
     }

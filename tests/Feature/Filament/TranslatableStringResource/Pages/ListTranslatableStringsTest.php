@@ -156,18 +156,3 @@ it('has an extract and parse action', function () {
             ->title('Extract and Parse strings dispatched')
     );
 });
-
-it('can edit the value inline', function () {
-    livewire(ListTranslatableStrings::class)
-        ->call(
-            'updateTableColumnState',
-            'value',
-            $this->strings[0]->id,
-            'updated en c value',
-        );
-
-    $this->assertDatabaseHas(TranslatableString::class, [
-        'id' => $this->strings[0]->id,
-        'value' => json_encode(['en' => 'updated en c value', 'nl' => 'nl c value']),
-    ]);
-});

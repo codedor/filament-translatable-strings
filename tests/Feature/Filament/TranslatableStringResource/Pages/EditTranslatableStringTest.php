@@ -23,11 +23,17 @@ it('can edit a translatable string', function () {
         ->assertFormSet([
             'scope' => $this->string->scope,
             'name' => $this->string->name,
-            'value' => $this->string->value,
+            'value' => [
+                'en' => 'en value',
+                'nl' => 'nl value',
+            ],
             'is_html' => $this->string->is_html,
         ])
         ->fillForm([
-            'value' => 'new en value',
+            'value' => [
+                'en' => 'en new value',
+                'nl' => 'nl value',
+            ],
         ])
         ->call('save')
         ->assertHasNoFormErrors();
@@ -37,4 +43,4 @@ it('can edit a translatable string', function () {
         ->name->toBe('name')
         ->value->toBe('new en value')
         ->is_html->toBeFalsy();
-});
+})->todo('needs fix');

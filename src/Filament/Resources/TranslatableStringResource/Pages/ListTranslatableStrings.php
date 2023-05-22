@@ -19,8 +19,6 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ListTranslatableStrings extends ListRecords
 {
-    use ListRecords\Concerns\Translatable;
-
     protected $listeners = ['refreshTable' => '$refresh'];
 
     protected static string $resource = TranslatableStringResource::class;
@@ -28,7 +26,6 @@ class ListTranslatableStrings extends ListRecords
     protected function getActions(): array
     {
         return [
-            Actions\LocaleSwitcher::make(),
             Actions\ActionGroup::make([
                 Actions\Action::make('extract_parse')
                     ->label('Extract and Parse')

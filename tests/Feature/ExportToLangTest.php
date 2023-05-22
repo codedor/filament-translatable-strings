@@ -26,11 +26,11 @@ beforeEach(function () {
     app()->setLocale('en');
 });
 
-afterEach(function () {
-    if ($this->filesystem->exists($this->langPath)) {
-        $this->filesystem->deleteDirectory($this->langPath);
-    }
-});
+// afterEach(function () {
+//     if ($this->filesystem->exists($this->langPath)) {
+//         $this->filesystem->deleteDirectory($this->langPath);
+//     }
+// });
 
 it('can map translatable strings for a given scope', function () {
     TranslatableString::create([
@@ -122,4 +122,20 @@ it('will export json scope to the lang directory', function () {
     app(ExportToLang::class)->export(ExtractTranslatableStrings::JSON_GROUP);
 
     expect(__('json'))->toBe('json en');
+});
+
+it('will not export empty values to the lang directory', function () {
+    TranslatableString::create([
+        'scope' => 'test',
+        'name' => 'underscore',
+        'key' => 'test.underscore',
+        'value' => [
+            'en' => '',
+        ],
+        'is_html' => false,
+    ]);
+
+    app(ExportToLang::class)->exportAll();
+
+    expect(__('test.underscore'))->toBe('test.underscore');
 });

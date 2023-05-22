@@ -15,7 +15,7 @@ class ExportToLang implements ShouldQueue
     use Queueable;
 
     public function __construct(
-        private ?string $scope = null
+        public ?string $scope = null
     ) {
     }
 

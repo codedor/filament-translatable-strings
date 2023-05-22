@@ -3,7 +3,10 @@
 use Codedor\LocaleCollection\Facades\LocaleCollection;
 use Codedor\LocaleCollection\Locale;
 use Codedor\TranslatableStrings\ExtractTranslatableStrings;
+use Codedor\TranslatableStrings\Jobs\ExportToLang;
 use Codedor\TranslatableStrings\Models\TranslatableString;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Queue;
 
 beforeEach(function () {
     LocaleCollection::add(new Locale('nl'))
@@ -93,4 +96,26 @@ it('can group scopes without filament', function () {
             ExtractTranslatableStrings::JSON_GROUP => 'Default',
             'group' => 'Group',
         ]);
+});
+
+it('will export to lang for the scope when model is updated', function () {
+    Queue::fake();
+
+    $string = createTranslatableString(
+        value: [
+            'nl' => null,
+            'en' => null,
+        ],
+        name: 'name',
+        scope: 'scope',
+    );
+
+    $string->value = [
+        'nl' => 'nl value',
+        'en' => 'en value',
+    ];
+
+    $string->save();
+
+    Queue::assertPushed(ExportToLang::class, fn (ExportToLang $job) => $job->scope === $string->scope);
 });
