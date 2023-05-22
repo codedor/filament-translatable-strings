@@ -11,7 +11,6 @@ use Codedor\TranslatableTabs\Forms\TranslatableTabs;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\TextInput;
-use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -55,7 +54,7 @@ class TranslatableStringResource extends Resource
                         TextInput::make('value')
                             ->hidden(fn (?TranslatableString $record) => $record?->is_html),
                     ])
-                    ->columnSpan(['lg' => 2])
+                    ->columnSpan(['lg' => 2]),
             ]);
     }
 
@@ -65,6 +64,7 @@ class TranslatableStringResource extends Resource
             fn (Locale $locale) => TextColumn::make($locale->locale())
                 ->formatStateUsing(fn (TranslatableString $record): string => $locale->locale() . ': ' . $record->getTranslation('value', $locale->locale()))
         );
+
         return $table
             ->columns([
                 Split::make([

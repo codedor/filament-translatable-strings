@@ -5,7 +5,6 @@ use Codedor\LocaleCollection\Locale;
 use Codedor\TranslatableStrings\ExtractTranslatableStrings;
 use Codedor\TranslatableStrings\Jobs\ExportToLang;
 use Codedor\TranslatableStrings\Models\TranslatableString;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Queue;
 
 beforeEach(function () {
