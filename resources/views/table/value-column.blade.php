@@ -1,20 +1,23 @@
-<div>
+<div class="w-full">
     @php
         $locales = \Codedor\LocaleCollection\Facades\LocaleCollection::map(fn ($locale) => $locale->locale());
         $livewire = $getLivewire();
         $resource = $livewire::getResource();
     @endphp
 
-    @foreach ($locales as $locale)
-        {{ $locale }}: {{ $getRecord()->getTranslation('value', $locale, false) }}
+    <ul>
+        @foreach ($locales as $locale)
+            <li>
+                @php
+                    $url = $resource::getUrl('edit', ['record' => $getRecord(), 'locale' => "-{$locale}-tab"]);
+                @endphp
 
-        @php
-            $url = $resource::getUrl('edit', ['record' => $getRecord(), 'locale' => "-{$locale}-tab"]);
+                <a href="{{ $url }}" class="flex gap-4 items-center justify-between p-1 rounded-md hover:bg-white transition-colors">
+                    <span><strong class="uppercase">{{ $locale }}:</strong> {{ $getRecord()->getTranslation('value', $locale, false) }}</span>
 
-        @endphp
-
-        <a href="{{ $url }}">
-            <x-heroicon-s-pencil class="h-6 w-6 text-red-600" />
-        </a>
-    @endforeach
+                    <x-heroicon-s-pencil class="h-5 w-5" />
+                </a>
+            </li>
+        @endforeach
+    </ul>
 </div>
