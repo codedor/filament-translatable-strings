@@ -2,6 +2,7 @@
 
 namespace Codedor\TranslatableStrings\Filament\Resources;
 
+use Closure;
 use Codedor\LocaleCollection\Facades\LocaleCollection;
 use Codedor\LocaleCollection\Locale;
 use Codedor\TranslatableStrings\Filament\Resources\TranslatableStringResource\Pages;
@@ -37,6 +38,8 @@ class TranslatableStringResource extends Resource
         return $form
             ->schema([
                 TranslatableTabs::make('translations')
+                    ->icon(fn (string $locale, Closure $get) => 'heroicon-o-status-' . (empty($get("{$locale}.value")) ? 'offline' : 'online'))
+                    ->iconColor(fn (string $locale, Closure $get) => empty($get("{$locale}.value")) ? 'danger' : 'success')
                     ->defaultFields([
                         TextInput::make('scope')
                             ->disabled()
