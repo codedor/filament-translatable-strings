@@ -14,7 +14,6 @@ use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\Layout\Panel;
 use Filament\Tables\Columns\Layout\Split;
@@ -23,6 +22,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ViewColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
 class TranslatableStringResource extends Resource

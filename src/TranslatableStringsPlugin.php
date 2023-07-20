@@ -9,6 +9,7 @@ use Filament\Panel;
 class TranslatableStringsPlugin implements Plugin
 {
     protected bool $hasTranslatableStringResource = true;
+
     public static function make(): static
     {
         return app(static::class);
