@@ -7,6 +7,8 @@ use Codedor\TranslatableStrings\Filament\Resources\TranslatableStringResource;
 use Codedor\TranslatableStrings\Imports\TranslatableStringsImport;
 use Codedor\TranslatableStrings\Jobs\ExtractAndParseStrings;
 use Codedor\TranslatableStrings\Models\TranslatableString;
+use Filament\Actions\Action;
+use Filament\Actions\ActionGroup;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\FileUpload;
 use Filament\Notifications\Notification;
@@ -26,21 +28,21 @@ class ListTranslatableStrings extends ListRecords
     protected function getActions(): array
     {
         return [
-            Actions\ActionGroup::make([
-                Actions\Action::make('extract_parse')
+            ActionGroup::make([
+                Action::make('extract_parse')
                     ->label('Extract and Parse')
-                    ->icon('heroicon-o-document-search')
-                    ->action('extractAndParseStrings')
+                    ->icon('heroicon-o-document-magnifying-glass')
+                    ->action(fn () => $this->extractAndParseStrings())
                     ->visible(fn (): bool => TranslatableStringResource::canDeleteAny()),
-                Actions\Action::make('export')
+                Action::make('export')
                     ->label('Export all')
-                    ->icon('heroicon-o-download')
-                    ->action('exportStrings')
+                    ->icon('heroicon-o-arrow-down-on-square')
+                    ->action(fn () => $this->exportStrings())
                     ->visible(fn (): bool => TranslatableStringResource::canViewAny()),
-                Actions\Action::make('import')
+                Action::make('import')
                     ->label('Import all')
-                    ->icon('heroicon-o-upload')
-                    ->action('importStrings')
+                    ->icon('heroicon-o-arrow-up-on-square')
+                    ->action(fn (array $data) => $this->importStrings($data))
                     ->visible(fn (): bool => TranslatableStringResource::canCreate())
                     ->form([
                         FileUpload::make('file')

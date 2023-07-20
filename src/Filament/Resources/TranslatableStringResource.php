@@ -12,9 +12,9 @@ use Codedor\TranslatableTabs\Forms\TranslatableTabs;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\TextInput;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\Layout\Panel;
 use Filament\Tables\Columns\Layout\Split;
@@ -29,7 +29,7 @@ class TranslatableStringResource extends Resource
 {
     protected static ?string $model = TranslatableString::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $recordTitleAttribute = 'key';
 
@@ -128,7 +128,7 @@ class TranslatableStringResource extends Resource
         return LocaleCollection::map(fn (Locale $locale) => $locale->locale())->toArray();
     }
 
-    protected static function getNavigationBadge(): ?string
+    public static function getNavigationBadge(): ?string
     {
         return static::getModel()::byOneEmptyValue()->count() . ' ' . __('empty');
     }
