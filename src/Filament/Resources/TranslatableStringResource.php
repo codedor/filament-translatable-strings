@@ -13,6 +13,7 @@ use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables\Table;
 use Filament\Tables;
@@ -38,8 +39,8 @@ class TranslatableStringResource extends Resource
         return $form
             ->schema([
                 TranslatableTabs::make('translations')
-                    ->icon(fn (string $locale, Closure $get) => 'heroicon-o-status-' . (empty($get("{$locale}.value")) ? 'offline' : 'online'))
-                    ->iconColor(fn (string $locale, Closure $get) => empty($get("{$locale}.value")) ? 'danger' : 'success')
+                    ->icon(fn (string $locale, Get $get) => 'heroicon-o-signal' . (empty($get("{$locale}.value")) ? '-slash' : ''))
+                    ->iconColor(fn (string $locale, Get $get) => empty($get("{$locale}.value")) ? 'danger' : 'success')
                     ->defaultFields([
                         TextInput::make('scope')
                             ->disabled()
@@ -81,17 +82,6 @@ class TranslatableStringResource extends Resource
                         ViewColumn::make('value')->view('filament-translatable-strings::table.value-column'),
                     ]),
                 ])->collapsible(),
-
-                // // TextColumn::make('value')->sortable(),
-                // TextInputColumn::make('value')
-                //     ->rules(['required', 'max:255'])
-                //     ->updateStateUsing(function (ListTranslatableStrings $livewire, $state, TranslatableString $record) {
-                //         $record->setTranslation('value', $livewire->getActiveTableLocale(), $state);
-                //         $record->save();
-
-                //         return $state;
-                //     })
-                //     ->disabled(fn (TranslatableString $record) => $record->is_html),
             ])
             ->filters([
                 TernaryFilter::make('filled_in')
