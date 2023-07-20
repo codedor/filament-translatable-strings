@@ -34,6 +34,9 @@ it('can edit a translatable string', function () {
                 'en' => 'en new value',
                 'nl' => 'nl value',
             ],
+            'en' => [
+                'value' => 'en new value 2',
+            ],
         ])
         ->call('save')
         ->assertHasNoFormErrors();
