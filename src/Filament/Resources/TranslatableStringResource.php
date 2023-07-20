@@ -2,11 +2,9 @@
 
 namespace Codedor\TranslatableStrings\Filament\Resources;
 
-use Closure;
 use Codedor\LocaleCollection\Facades\LocaleCollection;
 use Codedor\LocaleCollection\Locale;
 use Codedor\TranslatableStrings\Filament\Resources\TranslatableStringResource\Pages;
-use Codedor\TranslatableStrings\Filament\Resources\TranslatableStringResource\Pages\ListTranslatableStrings;
 use Codedor\TranslatableStrings\Models\TranslatableString;
 use Codedor\TranslatableTabs\Forms\TranslatableTabs;
 use Filament\Forms\Components\Checkbox;
