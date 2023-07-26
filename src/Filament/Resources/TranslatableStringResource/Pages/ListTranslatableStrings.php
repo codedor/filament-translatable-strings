@@ -91,7 +91,7 @@ class ListTranslatableStrings extends ListRecords
                 new UploadedFile(Storage::disk('local')->path($data['file']), $data['file'])
             );
 
-            $this->emit('refreshTable');
+            $this->dispatch('refreshTable');
 
             Notification::make()
                 ->title('Import was successful')
