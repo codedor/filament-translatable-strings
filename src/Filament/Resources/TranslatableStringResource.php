@@ -8,7 +8,6 @@ use Codedor\TranslatableStrings\Filament\Resources\TranslatableStringResource\Pa
 use Codedor\TranslatableStrings\Models\TranslatableString;
 use Codedor\TranslatableTabs\Forms\TranslatableTabs;
 use Filament\Forms\Components\Checkbox;
-use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
@@ -57,7 +56,7 @@ class TranslatableStringResource extends Resource
                                 TiptapEditor::make('value'),
                             ];
                         }
-                        
+
                         return [
                             TextInput::make('value'),
                         ];
