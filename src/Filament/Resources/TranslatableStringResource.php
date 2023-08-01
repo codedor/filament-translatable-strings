@@ -38,7 +38,6 @@ class TranslatableStringResource extends Resource
             ->schema([
                 TranslatableTabs::make('translations')
                     ->icon(fn (string $locale, Get $get) => 'heroicon-o-signal' . (empty($get("{$locale}.value")) ? '-slash' : ''))
-                    ->iconColor(fn (string $locale, Get $get) => empty($get("{$locale}.value")) ? 'danger' : 'success')
                     ->defaultFields([
                         TextInput::make('scope')
                             ->disabled()
