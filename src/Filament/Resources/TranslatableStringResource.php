@@ -22,6 +22,7 @@ use Filament\Tables\Columns\ViewColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
+use FilamentTiptapEditor\TiptapEditor;
 use Illuminate\Database\Eloquent\Builder;
 
 class TranslatableStringResource extends Resource
@@ -50,12 +51,17 @@ class TranslatableStringResource extends Resource
                             ->disabled()
                             ->dehydrated(false),
                     ])
-                    ->translatableFields([
-                        MarkdownEditor::make('value')
-                            ->hidden(fn (?TranslatableString $record) => ! $record?->is_html),
-                        TextInput::make('value')
-                            ->hidden(fn (?TranslatableString $record) => $record?->is_html),
-                    ])
+                    ->translatableFields(function (string $locale, TranslatableString $record) {
+                        if ($record->is_html) {
+                            return [
+                                TiptapEditor::make('value'),
+                            ];
+                        }
+                        
+                        return [
+                            TextInput::make('value'),
+                        ];
+                    })
                     ->columnSpan(['lg' => 2]),
             ]);
     }
