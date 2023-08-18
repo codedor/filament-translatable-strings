@@ -4,6 +4,7 @@ use Codedor\LocaleCollection\Facades\LocaleCollection;
 use Codedor\LocaleCollection\Locale;
 use Codedor\TranslatableStrings\Filament\Resources\TranslatableStringResource\Pages\EditTranslatableString;
 use Codedor\TranslatableStrings\Tests\Fixtures\Models\User;
+
 use function Pest\Livewire\livewire;
 
 beforeEach(function () {
