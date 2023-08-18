@@ -2,19 +2,16 @@
 
 namespace Codedor\TranslatableStrings\Filament\Resources;
 
-use Closure;
 use Codedor\LocaleCollection\Facades\LocaleCollection;
 use Codedor\LocaleCollection\Locale;
 use Codedor\TranslatableStrings\Filament\Resources\TranslatableStringResource\Pages;
-use Codedor\TranslatableStrings\Filament\Resources\TranslatableStringResource\Pages\ListTranslatableStrings;
 use Codedor\TranslatableStrings\Models\TranslatableString;
 use Codedor\TranslatableTabs\Forms\TranslatableTabs;
 use Filament\Forms\Components\Checkbox;
-use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\TextInput;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\Layout\Panel;
 use Filament\Tables\Columns\Layout\Split;
@@ -23,13 +20,15 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ViewColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
+use Filament\Tables\Table;
+use FilamentTiptapEditor\TiptapEditor;
 use Illuminate\Database\Eloquent\Builder;
 
 class TranslatableStringResource extends Resource
 {
     protected static ?string $model = TranslatableString::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $recordTitleAttribute = 'key';
 
@@ -37,9 +36,8 @@ class TranslatableStringResource extends Resource
     {
         return $form
             ->schema([
-                TranslatableTabs::make('translations')
-                    ->icon(fn (string $locale, Closure $get) => 'heroicon-o-status-' . (empty($get("{$locale}.value")) ? 'offline' : 'online'))
-                    ->iconColor(fn (string $locale, Closure $get) => empty($get("{$locale}.value")) ? 'danger' : 'success')
+                TranslatableTabs::make()
+                    ->icon(fn (string $locale, Get $get) => 'heroicon-o-signal' . (empty($get("{$locale}.value")) ? '-slash' : ''))
                     ->defaultFields([
                         TextInput::make('scope')
                             ->disabled()
@@ -51,12 +49,17 @@ class TranslatableStringResource extends Resource
                             ->disabled()
                             ->dehydrated(false),
                     ])
-                    ->translatableFields([
-                        MarkdownEditor::make('value')
-                            ->hidden(fn (?TranslatableString $record) => ! $record?->is_html),
-                        TextInput::make('value')
-                            ->hidden(fn (?TranslatableString $record) => $record?->is_html),
-                    ])
+                    ->translatableFields(function (TranslatableString $record) {
+                        if ($record->is_html) {
+                            return [
+                                TiptapEditor::make('value'),
+                            ];
+                        }
+
+                        return [
+                            TextInput::make('value'),
+                        ];
+                    })
                     ->columnSpan(['lg' => 2]),
             ]);
     }
@@ -81,17 +84,6 @@ class TranslatableStringResource extends Resource
                         ViewColumn::make('value')->view('filament-translatable-strings::table.value-column'),
                     ]),
                 ])->collapsible(),
-
-                // // TextColumn::make('value')->sortable(),
-                // TextInputColumn::make('value')
-                //     ->rules(['required', 'max:255'])
-                //     ->updateStateUsing(function (ListTranslatableStrings $livewire, $state, TranslatableString $record) {
-                //         $record->setTranslation('value', $livewire->getActiveTableLocale(), $state);
-                //         $record->save();
-
-                //         return $state;
-                //     })
-                //     ->disabled(fn (TranslatableString $record) => $record->is_html),
             ])
             ->filters([
                 TernaryFilter::make('filled_in')
@@ -128,7 +120,7 @@ class TranslatableStringResource extends Resource
         return LocaleCollection::map(fn (Locale $locale) => $locale->locale())->toArray();
     }
 
-    protected static function getNavigationBadge(): ?string
+    public static function getNavigationBadge(): ?string
     {
         return static::getModel()::byOneEmptyValue()->count() . ' ' . __('empty');
     }

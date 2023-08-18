@@ -85,8 +85,8 @@ it('has no create action', function () {
 
 it('has an import action that can throw an error', function () {
     livewire(ListTranslatableStrings::class)
-        ->assertPageActionExists('import')
-        ->callPageAction('import');
+        ->assertActionExists('import')
+        ->callAction('import');
 
     Notification::assertNotified('Something went wrong during the import');
 });
@@ -98,8 +98,8 @@ it('has an import action that can truncate the table', function () {
     );
 
     livewire(ListTranslatableStrings::class)
-        ->assertPageActionExists('import')
-        ->callPageAction('import', [
+        ->assertActionExists('import')
+        ->callAction('import', [
             'overwrite' => true,
             'file' => ['file' => 'import_truncate.xlsx'],
         ]);
@@ -138,16 +138,16 @@ it('has an export action', function () {
     );
 
     livewire(ListTranslatableStrings::class)
-        ->assertPageActionExists('export')
-        ->callPageAction('export');
+        ->assertActionExists('export')
+        ->callAction('export');
 });
 
 it('has an extract and parse action', function () {
     Queue::fake();
 
     livewire(ListTranslatableStrings::class)
-        ->assertPageActionExists('extract_parse')
-        ->callPageAction('extract_parse');
+        ->assertActionExists('extract_parse')
+        ->callAction('extract_parse');
 
     Queue::assertPushed(ExtractAndParseStrings::class);
 
