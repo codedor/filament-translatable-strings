@@ -36,7 +36,7 @@ class TranslatableStringResource extends Resource
     {
         return $form
             ->schema([
-                TranslatableTabs::make('translations')
+                TranslatableTabs::make()
                     ->icon(fn (string $locale, Get $get) => 'heroicon-o-signal' . (empty($get("{$locale}.value")) ? '-slash' : ''))
                     ->defaultFields([
                         TextInput::make('scope')
@@ -49,7 +49,7 @@ class TranslatableStringResource extends Resource
                             ->disabled()
                             ->dehydrated(false),
                     ])
-                    ->translatableFields(function (string $locale, TranslatableString $record) {
+                    ->translatableFields(function (TranslatableString $record) {
                         if ($record->is_html) {
                             return [
                                 TiptapEditor::make('value'),
