@@ -12,7 +12,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithTitle;
 
-class TranslatableStringsPerScopeSheet implements FromQuery, WithTitle, WithHeadings, ShouldAutoSize, WithMapping
+class TranslatableStringsPerScopeSheet implements FromQuery, ShouldAutoSize, WithHeadings, WithMapping, WithTitle
 {
     private Collection $locales;
 

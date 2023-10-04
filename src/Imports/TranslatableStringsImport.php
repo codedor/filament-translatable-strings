@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\SkipsUnknownSheets;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use Maatwebsite\Excel\Imports\HeadingRowFormatter;
 
-class TranslatableStringsImport implements WithMultipleSheets, SkipsUnknownSheets
+class TranslatableStringsImport implements SkipsUnknownSheets, WithMultipleSheets
 {
     public function sheets(): array
     {
