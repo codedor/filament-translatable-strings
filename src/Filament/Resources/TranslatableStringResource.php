@@ -104,7 +104,8 @@ class TranslatableStringResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
-            ->bulkActions([]);
+            ->bulkActions([])
+            ->paginated([25, 50, 100]);
     }
 
     public static function getPages(): array
