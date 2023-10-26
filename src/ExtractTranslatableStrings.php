@@ -82,7 +82,7 @@ class ExtractTranslatableStrings
         }
 
         if (class_exists(TranslateRouteParts::class)) {
-            TranslateRouteParts::each(function (string $key) use ($index) {
+            TranslateRouteParts::each(function (string $key) {
                 $this->groupKeys->add([
                     'key' => $key,
                     'method' => '__',
