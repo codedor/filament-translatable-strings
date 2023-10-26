@@ -37,14 +37,18 @@ class TranslatableStringResource extends Resource
         return $form
             ->schema([
                 TranslatableTabs::make()
-                    ->icon(fn (string $locale, Get $get) => 'heroicon-o-signal' . (empty($get("{$locale}.value")) ? '-slash' : ''))
+                    ->icon(fn (string $locale, Get $get) => 'heroicon-o-' . (
+                        empty($get("{$locale}.value")) ? 'x-circle' : 'check-circle'
+                    ))
                     ->defaultFields([
                         TextInput::make('scope')
                             ->disabled()
                             ->dehydrated(false),
+
                         TextInput::make('name')
                             ->disabled()
                             ->dehydrated(false),
+
                         Checkbox::make('is_html')
                             ->disabled()
                             ->dehydrated(false),
@@ -59,18 +63,12 @@ class TranslatableStringResource extends Resource
                         return [
                             TextInput::make('value'),
                         ];
-                    })
-                    ->columnSpan(['lg' => 2]),
+                    }),
             ]);
     }
 
     public static function table(Table $table): Table
     {
-        $localeColumns = LocaleCollection::map(
-            fn (Locale $locale) => TextColumn::make($locale->locale())
-                ->formatStateUsing(fn (TranslatableString $record): string => $locale->locale() . ': ' . $record->getTranslation('value', $locale->locale()))
-        );
-
         return $table
             ->columns([
                 Split::make([

@@ -4,6 +4,7 @@ namespace Codedor\TranslatableStrings;
 
 use Codedor\LocaleCollection\Facades\LocaleCollection;
 use Codedor\LocaleCollection\Locale;
+use Codedor\TranslatableRoutes\Facades\TranslateRouteParts;
 use Codedor\TranslatableStrings\Models\TranslatableString;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
@@ -80,13 +81,14 @@ class ExtractTranslatableStrings
             }
         }
 
-        // Translatable::getTranslatableRouteParts()->each(
-        //     function ($item) use (&$groupKeys) {
-        //         if ($item) {
-        //             $groupKeys[] = 'routes.' . $item;
-        //         }
-        //     }
-        // );
+        if (class_exists(TranslateRouteParts::class)) {
+            TranslateRouteParts::each(function (string $key) use ($index) {
+                $this->groupKeys->add([
+                    'key' => $key,
+                    'method' => '__',
+                ]);
+            });
+        }
 
         return $this;
     }
