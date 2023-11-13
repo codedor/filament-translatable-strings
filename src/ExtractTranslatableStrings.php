@@ -5,7 +5,6 @@ namespace Codedor\TranslatableStrings;
 use Codedor\LocaleCollection\Facades\LocaleCollection;
 use Codedor\LocaleCollection\Locale;
 use Codedor\TranslatableRoutes\Facades\TranslateRouteParts;
-use Codedor\TranslatableRoutes\TranslateRoute;
 use Codedor\TranslatableStrings\Models\TranslatableString;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
