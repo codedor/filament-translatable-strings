@@ -5,6 +5,7 @@ namespace Codedor\TranslatableStrings;
 use Codedor\LocaleCollection\Facades\LocaleCollection;
 use Codedor\LocaleCollection\Locale;
 use Codedor\TranslatableRoutes\Facades\TranslateRouteParts;
+use Codedor\TranslatableRoutes\TranslateRoute;
 use Codedor\TranslatableStrings\Models\TranslatableString;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
@@ -82,6 +83,10 @@ class ExtractTranslatableStrings
         }
 
         if (class_exists(TranslateRouteParts::class)) {
+            if (TranslateRouteParts::isEmpty()) {
+                LocaleCollection::registerRoutes(base_path('routes/translatable.php'));
+            }
+
             TranslateRouteParts::each(function (string $key) {
                 $this->groupKeys->add([
                     'key' => $key,
