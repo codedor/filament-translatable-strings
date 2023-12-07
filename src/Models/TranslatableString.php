@@ -14,6 +14,7 @@ use Spatie\Translatable\HasTranslations;
 
 /**
  * @property string $scope
+ * @property string $key
  * @property string $name
  * @property bool $is_html
  * @property array $value
