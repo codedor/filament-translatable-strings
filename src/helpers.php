@@ -6,7 +6,7 @@ if (! function_exists('__html')) {
     /**
      * Translate the given html message.
      */
-    function __html(?string $key, array $replace = [], string $locale = null): HtmlString
+    function __html(?string $key, array $replace = [], ?string $locale = null): HtmlString
     {
         $string = __($key, $replace, $locale);
 
