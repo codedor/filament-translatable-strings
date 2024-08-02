@@ -16,8 +16,7 @@ class ExportToLang implements ShouldQueue
 
     public function __construct(
         public ?string $scope = null
-    ) {
-    }
+    ) {}
 
     public function handle()
     {
