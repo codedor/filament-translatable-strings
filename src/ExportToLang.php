@@ -13,8 +13,7 @@ class ExportToLang
 {
     public function __construct(
         protected Filesystem $files
-    ) {
-    }
+    ) {}
 
     public function exportAll()
     {

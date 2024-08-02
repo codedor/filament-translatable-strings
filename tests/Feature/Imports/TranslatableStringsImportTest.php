@@ -10,7 +10,7 @@ beforeEach(function () {
     LocaleCollection::push(new Locale('en'))
         ->push(new Locale('nl'));
 
-    $this->import = new TranslatableStringsImport();
+    $this->import = new TranslatableStringsImport;
 
     $this->translatableString = TranslatableString::create([
         'name' => 'name',

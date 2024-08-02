@@ -14,8 +14,7 @@ class TranslatableStringScopeSheet implements ToCollection, WithHeadingRow
 {
     public function __construct(
         private string $scope
-    ) {
-    }
+    ) {}
 
     public function collection(Collection $rows)
     {

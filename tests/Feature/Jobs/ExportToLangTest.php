@@ -25,7 +25,7 @@ it('can export all scopes', function () {
         })
     );
 
-    $job = new ExportToLang();
+    $job = new ExportToLang;
 
     $job->handle();
 });

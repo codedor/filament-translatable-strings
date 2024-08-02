@@ -50,7 +50,7 @@ class TestCase extends Orchestra
     {
         config()->set('database.default', 'testing');
 
-        $panel = new \Filament\Panel();
+        $panel = new \Filament\Panel;
         $panel
             ->id('resource-test')
             ->default(true)

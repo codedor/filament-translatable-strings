@@ -24,15 +24,15 @@ class ExtractTranslatableStrings
     public function __construct(
         protected Filesystem $files
     ) {
-        $this->groupKeys = new Collection();
-        $this->stringKeys = new Collection();
-        $this->vendorKeys = new Collection();
+        $this->groupKeys = new Collection;
+        $this->stringKeys = new Collection;
+        $this->vendorKeys = new Collection;
     }
 
     public function find(string $path): self
     {
         // Find all PHP files in the app folder, except for storage
-        $finder = (new Finder())
+        $finder = (new Finder)
             ->in($path)
             ->exclude(config('filament-translatable-strings.exclude_folders', []))
             ->name('*.php')

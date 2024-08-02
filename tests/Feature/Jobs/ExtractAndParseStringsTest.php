@@ -12,5 +12,5 @@ it('can dispatch extract and parse', function () {
         })
     );
 
-    (new ExtractAndParseStrings())->handle();
+    (new ExtractAndParseStrings)->handle();
 });

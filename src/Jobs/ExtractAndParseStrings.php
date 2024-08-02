@@ -14,9 +14,7 @@ class ExtractAndParseStrings implements ShouldQueue
     use InteractsWithQueue;
     use Queueable;
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public function handle()
     {
