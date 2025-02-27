@@ -9,7 +9,9 @@ beforeEach(function () {
     LocaleCollection::push(new Locale('en'))
         ->push(new Locale('nl'));
 
-    createTranslatableString();
+    createTranslatableString(value: [
+        'nl' => 'Nederlandse waarde',
+    ]);
 
     $this->actingAs(User::factory()->create());
 });

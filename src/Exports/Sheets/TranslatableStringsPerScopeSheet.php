@@ -5,6 +5,7 @@ namespace Codedor\TranslatableStrings\Exports\Sheets;
 use Codedor\LocaleCollection\Facades\LocaleCollection;
 use Codedor\LocaleCollection\Locale;
 use Codedor\TranslatableStrings\Models\TranslatableString;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
@@ -33,7 +34,7 @@ class TranslatableStringsPerScopeSheet implements FromQuery, ShouldAutoSize, Wit
             ->toArray();
     }
 
-    public function query()
+    public function query(): Builder
     {
         return TranslatableString::select('name', 'value')->where('scope', $this->scope);
     }
