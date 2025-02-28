@@ -12,7 +12,7 @@ function createTranslatableString(
     string $scope = 'scope',
     string $name = 'name',
     bool $isHtml = false,
-    array $value = []
+    ?array $value = null,
 ): TranslatableString {
     return TranslatableString::create([
         'name' => $name,
