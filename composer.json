@@ -11,8 +11,8 @@
     "require": {
         "php": "^8.2",
         "awcodes/filament-tiptap-editor": "^3.0",
-        "codedor/filament-translatable-tabs": "dev-laravel-12 as 1.1.0",
-        "codedor/laravel-locale-collection": "dev-laravel-12 as 1.1.0",
+        "codedor/filament-translatable-tabs": "^1.3",
+        "codedor/laravel-locale-collection": "^1.2.1",
         "filament/filament": "^3.0",
         "illuminate/contracts": "^10.0|^11.0|^12.0",
         "maatwebsite/excel": "^3.1",
