@@ -1,14 +1,10 @@
 parameters:
     ignoreErrors:
         -
-            message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Builder\\:\\:byFilledInValues\\(\\)\\.$#"
-            count: 1
-            path: src/Filament/Resources/TranslatableStringResource.php
-        -
-            message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Builder\\:\\:byOneEmptyValue\\(\\)\\.$#"
-            count: 1
-            path: src/Filament/Resources/TranslatableStringResource.php
-        -
             message: "#^Call to an undefined static method Codedor\\\\LocaleCollection\\\\Facades\\\\LocaleCollection\\:\\:registerRoutes\\(\\)\\.$#"
             count: 1
             path: src/ExtractTranslatableStrings.php
+        -
+            message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Builder\\<Illuminate\\\\Database\\\\Eloquent\\\\Model\\>\\:\\:byOneEmptyValue\\(\\)\\.$#"
+            count: 1
+            path: src/Filament/Resources/TranslatableStringResource.php

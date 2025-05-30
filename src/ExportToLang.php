@@ -19,7 +19,7 @@ class ExportToLang
     {
         TranslatableString::distinct()
             ->get('scope')
-            ->each(fn ($scope) => $this->export($scope->scope));
+            ->each(fn (TranslatableString $scope) => $this->export($scope->scope));
     }
 
     public function export(string $scope)
@@ -70,7 +70,7 @@ class ExportToLang
 
         return LocaleCollection::mapToGroups(fn (Locale $locale) => [
             $locale->locale() => $translatableStrings
-                ->mapWithKeys(fn ($translatableString) => [
+                ->mapWithKeys(fn (TranslatableString $translatableString) => [
                     $translatableString->name => $translatableString->getTranslation('value', $locale->locale(), false),
                 ])
                 ->filter(),
