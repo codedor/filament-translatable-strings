@@ -2,6 +2,8 @@
 
 use Codedor\TranslatableStrings\ExportToLang as TranslatableStringsExportToLang;
 use Codedor\TranslatableStrings\Jobs\ExportToLang;
+use Illuminate\Queue\Middleware\Skip;
+use Illuminate\Support\Facades\Queue;
 use Mockery\MockInterface;
 
 it('can export for the given scope', function () {
@@ -28,4 +30,29 @@ it('can export all scopes', function () {
     $job = new ExportToLang;
 
     $job->handle();
+});
+
+it('can skip export', function () {
+    config()->set('filament-translatable-strings.skip_export_to_lang', true);
+
+    Queue::fake();
+
+    $this->instance(
+        TranslatableStringsExportToLang::class,
+        Mockery::mock(TranslatableStringsExportToLang::class, function (MockInterface $mock) {
+            $mock->shouldReceive('export')->never();
+            $mock->shouldReceive('exportAll')->never();
+        })
+    );
+
+    ExportToLang::dispatch();
+
+    Queue::assertPushed(ExportToLang::class, function ($job) {
+        $middleware = $job->middleware();
+
+        expect($middleware)->toHaveCount(1);
+        expect($middleware[0])->toBeInstanceOf(Skip::class);
+
+        return true;
+    });
 });

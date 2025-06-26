@@ -21,4 +21,6 @@ return [
         'vendor/symfony',
         'tests',
     ],
+
+    'skip_export_to_lang' => (bool) env('SKIP_EXPORT_TO_LANG', false),
 ];

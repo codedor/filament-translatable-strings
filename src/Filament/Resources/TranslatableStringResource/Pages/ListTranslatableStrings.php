@@ -94,7 +94,7 @@ class ListTranslatableStrings extends ListRecords
             $this->dispatch('refreshTable');
 
             Notification::make()
-                ->title()
+                ->title(__('filament-translatable-strings::admin.import completed'))
                 ->success()
                 ->send();
         } catch (\Throwable $th) {
