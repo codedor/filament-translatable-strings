@@ -10,7 +10,6 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "awcodes/filament-tiptap-editor": "^3.0",
         "codedor/filament-translatable-tabs": "dev-feature/filament-v4",
         "codedor/laravel-locale-collection": "^1.2.1",
         "filament/filament": "^4.0",

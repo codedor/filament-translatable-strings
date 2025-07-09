@@ -9,6 +9,7 @@ use Codedor\TranslatableStrings\Models\Builders\TranslatableStringBuilder;
 use Codedor\TranslatableStrings\Models\TranslatableString;
 use Codedor\TranslatableTabs\Forms\TranslatableTabs;
 use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\Layout\Panel;
@@ -53,7 +54,7 @@ class TranslatableStringResource extends Resource
                     ->translatableFields(function (TranslatableString $record) {
                         if ($record->is_html) {
                             return [
-                                TiptapEditor::make('value'),
+                                RichEditor::make('value'),
                             ];
                         }
 
