@@ -20,7 +20,6 @@ use Filament\Tables\Columns\ViewColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
-use FilamentTiptapEditor\TiptapEditor;
 
 class TranslatableStringResource extends Resource
 {
