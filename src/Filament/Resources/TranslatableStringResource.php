@@ -23,6 +23,7 @@ use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use FilamentTiptapEditor\TiptapEditor;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 class TranslatableStringResource extends Resource
 {
@@ -99,7 +100,18 @@ class TranslatableStringResource extends Resource
                 ]),
                 Panel::make([
                     Stack::make([
-                        ViewColumn::make('value')->view('filament-translatable-strings::table.value-column'),
+                        ViewColumn::make('value')
+                            ->view('filament-translatable-strings::table.value-column')
+                            ->searchable(
+                                query: fn (Builder $query, string $search) => $query->where(
+                                    fn ($query) => LocaleCollection::each(
+                                        fn (Locale $locale) => $query->whereRaw(
+                                            'LOWER(json_unquote(json_extract(value, \'$."' . $locale->locale() . '"\'))) LIKE ? ',
+                                            ['%' . Str::lower($search) . '%']
+                                        )
+                                    )
+                                ),
+                            ),
                     ]),
                 ])->collapsible(),
             ])
