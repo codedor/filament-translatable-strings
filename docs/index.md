@@ -85,7 +85,7 @@ This command can be added to your deploy script to extract the changes automatic
 
 ## Configuration
 
-The config has 3 keys: `trans_functions`, `html_trans_functions` and `exclude_folders`.
+The config has 4 keys: `trans_functions`, `html_trans_functions`, `exclude_folders` and `skip_export_to_lang`.
 
 ### trans_functions
 
@@ -133,6 +133,18 @@ Default:
     'tests',
 ],
 ```
+
+### skip_export_to_lang
+
+This setting allows you to disable the automatic export of translations to the language files. This can be useful in environments where you don't want the translations to be written to disk (e.g., production environments with read-only filesystems).
+
+Default:
+
+```php
+'skip_export_to_lang' => (bool) env('SKIP_EXPORT_TO_LANG', false),
+```
+
+When set to `true`, the `ExportToLang` job will be skipped and translations will not be written to the `lang/` directory.
 
 ## Filament
 

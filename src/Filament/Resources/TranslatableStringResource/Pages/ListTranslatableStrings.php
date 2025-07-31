@@ -29,25 +29,26 @@ class ListTranslatableStrings extends ListRecords
         return [
             ActionGroup::make([
                 Action::make('extract_parse')
-                    ->label('Extract and Parse')
+                    ->label(__('filament-translatable-strings::admin.extract and parse'))
                     ->icon('heroicon-o-document-magnifying-glass')
                     ->action(fn () => $this->extractAndParseStrings())
                     ->visible(fn (): bool => TranslatableStringResource::canDeleteAny()),
                 Action::make('export')
-                    ->label('Export all')
+                    ->label(__('filament-translatable-strings::admin.export all'))
                     ->icon('heroicon-o-arrow-down-on-square')
                     ->action(fn () => $this->exportStrings())
                     ->visible(fn (): bool => TranslatableStringResource::canViewAny()),
                 Action::make('import')
-                    ->label('Import all')
+                    ->label(__('filament-translatable-strings::admin.import all'))
                     ->icon('heroicon-o-arrow-up-on-square')
                     ->action(fn (array $data) => $this->importStrings($data))
                     ->visible(fn (): bool => TranslatableStringResource::canCreate())
                     ->form([
                         FileUpload::make('file')
+                            ->label(__('filament-translatable-strings::admin.file'))
                             ->disk('local'),
                         Checkbox::make('overwrite')
-                            ->label('Overwrite existing strings'),
+                            ->label(__('filament-translatable-strings::admin.overwrite existing strings')),
                     ]),
             ]),
         ];
@@ -62,9 +63,8 @@ class ListTranslatableStrings extends ListRecords
     {
         ExtractAndParseStrings::dispatch();
 
-        // send notification that the job has been dispatched
         Notification::make()
-            ->title('Extract and Parse strings dispatched')
+            ->title(__('filament-translatable-strings::admin.extract and parse strings dispatched'))
             ->success()
             ->send();
     }
@@ -94,12 +94,12 @@ class ListTranslatableStrings extends ListRecords
             $this->dispatch('refreshTable');
 
             Notification::make()
-                ->title('Import was successful')
+                ->title(__('filament-translatable-strings::admin.import completed'))
                 ->success()
                 ->send();
         } catch (\Throwable $th) {
             Notification::make()
-                ->title('Something went wrong during the import')
+                ->title(__('filament-translatable-strings::admin.something went wrong during import'))
                 ->body($th->getMessage())
                 ->danger()
                 ->send();

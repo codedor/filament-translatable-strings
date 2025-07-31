@@ -125,14 +125,17 @@ class ExtractTranslatableStrings
     {
         TranslatableString::flushEventListeners();
 
-        TranslatableString::updateOrCreate([
+        $translatableString = TranslatableString::updateOrCreate([
             'scope' => $scope,
             'name' => $name,
         ], [
             'key' => $key,
             'is_html' => $isHtml,
-            'value' => $this->getValue($key),
         ]);
+
+        if ($translatableString->wasRecentlyCreated) {
+            $translatableString->value = $this->getValue($key);
+        }
     }
 
     public function getAllFunctions(): Collection
