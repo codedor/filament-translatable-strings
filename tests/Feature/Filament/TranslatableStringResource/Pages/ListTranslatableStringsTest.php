@@ -29,7 +29,7 @@ beforeEach(function () {
 
 it('can list translatable strings', function () {
     livewire(ListTranslatableStrings::class)
-        ->assertSuccessful()
+        ->assertOk()
         ->assertCanSeeTableRecords($this->strings);
 });
 

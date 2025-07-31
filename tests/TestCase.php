@@ -10,6 +10,7 @@ use Filament\FilamentServiceProvider;
 use Filament\FilamentServiceProvider as BaseFilamentServiceProvider;
 use Filament\Forms\FormsServiceProvider;
 use Filament\Notifications\NotificationsServiceProvider;
+use Filament\Schemas\SchemasServiceProvider;
 use Filament\Support\SupportServiceProvider;
 use Filament\Tables\TablesServiceProvider;
 use Filament\Widgets\WidgetsServiceProvider;
@@ -41,6 +42,7 @@ class TestCase extends Orchestra
             LivewireServiceProvider::class,
             NotificationsServiceProvider::class,
             SupportServiceProvider::class,
+            SchemasServiceProvider::class,
             TablesServiceProvider::class,
             ExcelServiceProvider::class,
         ];

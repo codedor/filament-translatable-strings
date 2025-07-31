@@ -5,14 +5,13 @@ namespace Codedor\TranslatableStrings\Filament\Resources;
 use Codedor\LocaleCollection\Facades\LocaleCollection;
 use Codedor\LocaleCollection\Locale;
 use Codedor\TranslatableStrings\Filament\Resources\TranslatableStringResource\Pages;
+use Codedor\TranslatableStrings\Models\Builders\TranslatableStringBuilder;
 use Codedor\TranslatableStrings\Models\TranslatableString;
 use Codedor\TranslatableTabs\Forms\TranslatableTabs;
 use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
-use Filament\Forms\Get;
 use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Columns\Layout\Panel;
 use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\Layout\Stack;
@@ -21,23 +20,21 @@ use Filament\Tables\Columns\ViewColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
-use FilamentTiptapEditor\TiptapEditor;
-use Illuminate\Database\Eloquent\Builder;
 
 class TranslatableStringResource extends Resource
 {
     protected static ?string $model = TranslatableString::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $recordTitleAttribute = 'key';
 
-    public static function form(Form $form): Form
+    public static function form(\Filament\Schemas\Schema $schema): \Filament\Schemas\Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 TranslatableTabs::make()
-                    ->icon(fn (string $locale, Get $get) => 'heroicon-o-' . (
+                    ->icon(fn (string $locale, \Filament\Schemas\Components\Utilities\Get $get) => 'heroicon-o-' . (
                         empty($get("{$locale}.value")) ? 'x-circle' : 'check-circle'
                     ))
                     ->defaultFields([
@@ -56,7 +53,7 @@ class TranslatableStringResource extends Resource
                     ->translatableFields(function (TranslatableString $record) {
                         if ($record->is_html) {
                             return [
-                                TiptapEditor::make('value'),
+                                RichEditor::make('value'),
                             ];
                         }
 
@@ -89,9 +86,9 @@ class TranslatableStringResource extends Resource
                     ->trueLabel('Only filled in records')
                     ->falseLabel('Only not filled in records')
                     ->queries(
-                        true: fn (Builder $query) => $query->byFilledInValues(),
-                        false: fn (Builder $query) => $query->byOneEmptyValue(),
-                        blank: fn (Builder $query) => $query,
+                        true: fn (TranslatableStringBuilder $query) => $query->byFilledInValues(),
+                        false: fn (TranslatableStringBuilder $query) => $query->byOneEmptyValue(),
+                        blank: fn (TranslatableStringBuilder $query) => $query,
                     ),
 
                 SelectFilter::make('scope')->options(function () {
@@ -100,7 +97,7 @@ class TranslatableStringResource extends Resource
                 })->placeholder('All scopes'),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                \Filament\Actions\EditAction::make(),
             ])
             ->bulkActions([])
             ->paginated([25, 50, 100]);
@@ -121,6 +118,8 @@ class TranslatableStringResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::byOneEmptyValue()->count() . ' ' . __('empty');
+        return static::getModel()::query()
+            ->byOneEmptyValue()
+            ->count() . ' ' . __('empty');
     }
 }
