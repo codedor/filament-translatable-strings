@@ -7,6 +7,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\Middleware\Skip;
 
 class ExportToLang implements ShouldQueue
 {
@@ -17,6 +18,13 @@ class ExportToLang implements ShouldQueue
     public function __construct(
         public ?string $scope = null
     ) {}
+
+    public function middleware(): array
+    {
+        return [
+            Skip::when(fn () => config('filament-translatable-strings.skip_export_to_lang')),
+        ];
+    }
 
     public function handle()
     {
