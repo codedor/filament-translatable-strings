@@ -8,7 +8,6 @@ use Codedor\TranslatableStrings\Providers\TranslatableStringsServiceProvider;
 use Codedor\TranslatableTabs\Providers\TranslatableTabsServiceProvider;
 use Filament\Actions\ActionsServiceProvider;
 use Filament\FilamentServiceProvider;
-use Filament\FilamentServiceProvider as BaseFilamentServiceProvider;
 use Filament\Forms\FormsServiceProvider;
 use Filament\Infolists\InfolistsServiceProvider;
 use Filament\Notifications\NotificationsServiceProvider;

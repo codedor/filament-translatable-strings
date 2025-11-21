@@ -14,7 +14,6 @@ use Illuminate\Support\Str;
 use Livewire\Livewire;
 use Mockery\MockInterface;
 
-
 beforeEach(function () {
     LocaleCollection::push(new Locale('en'))
         ->push(new Locale('nl'));
