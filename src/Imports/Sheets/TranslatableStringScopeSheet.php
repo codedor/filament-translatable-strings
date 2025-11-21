@@ -23,6 +23,7 @@ class TranslatableStringScopeSheet implements ToCollection, WithHeadingRow
                 return;
             }
 
+            /** @var TranslatableString $string */
             $string = TranslatableString::where('name', $row->get('name'))
                 ->where('scope', $this->scope)
                 ->first();

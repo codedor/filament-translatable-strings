@@ -135,6 +135,7 @@ class ExtractTranslatableStrings
 
         if ($translatableString->wasRecentlyCreated) {
             $translatableString->value = $this->getValue($key);
+            $translatableString->save();
         }
     }
 

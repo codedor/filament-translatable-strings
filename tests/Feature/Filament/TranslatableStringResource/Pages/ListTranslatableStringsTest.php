@@ -29,7 +29,7 @@ beforeEach(function () {
 
 it('can list translatable strings', function () {
     livewire(ListTranslatableStrings::class)
-        ->assertSuccessful()
+        ->assertOk()
         ->assertCanSeeTableRecords($this->strings);
 });
 
@@ -107,7 +107,7 @@ it('has an import action that can truncate the table', function () {
     Notification::assertNotified(
         Notification::make()
             ->success()
-            ->title('Import was successful')
+            ->title(__('filament-translatable-strings::admin.import completed'))
     );
 
     $this->assertDatabaseCount(TranslatableString::class, 2);
