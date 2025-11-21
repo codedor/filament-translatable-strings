@@ -20,7 +20,6 @@ use Filament\Tables\Columns\ViewColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
-use FilamentTiptapEditor\TiptapEditor;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
@@ -59,7 +58,7 @@ class TranslatableStringResource extends Resource
                     ->translatableFields(function (TranslatableString $record) {
                         if ($record->is_html) {
                             return [
-                                RichEditor::make('value'),
+                                RichEditor::make('value')
                                     ->label(__('filament-translatable-strings::admin.value')),
                             ];
                         }

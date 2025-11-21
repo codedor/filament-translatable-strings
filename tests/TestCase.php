@@ -5,10 +5,12 @@ namespace Codedor\TranslatableStrings\Tests;
 use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
 use Codedor\TranslatableStrings\Providers\TranslatableStringsServiceProvider;
+use Codedor\TranslatableTabs\Providers\TranslatableTabsServiceProvider;
 use Filament\Actions\ActionsServiceProvider;
 use Filament\FilamentServiceProvider;
 use Filament\FilamentServiceProvider as BaseFilamentServiceProvider;
 use Filament\Forms\FormsServiceProvider;
+use Filament\Infolists\InfolistsServiceProvider;
 use Filament\Notifications\NotificationsServiceProvider;
 use Filament\Schemas\SchemasServiceProvider;
 use Filament\Support\SupportServiceProvider;
@@ -18,6 +20,7 @@ use Livewire\LivewireServiceProvider;
 use Maatwebsite\Excel\ExcelServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
+use Spatie\Translatable\TranslatableServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -28,24 +31,29 @@ class TestCase extends Orchestra
 
     protected function getPackageProviders($app)
     {
-        return [
-            TranslatableStringsServiceProvider::class,
+        $providers = [
             LivewireServiceProvider::class,
-            FilamentServiceProvider::class,
+            TranslatableTabsServiceProvider::class,
+            ActionsServiceProvider::class,
             BladeCaptureDirectiveServiceProvider::class,
             BladeHeroiconsServiceProvider::class,
             BladeIconsServiceProvider::class,
-            BaseFilamentServiceProvider::class,
+            FilamentServiceProvider::class,
             FormsServiceProvider::class,
-            ActionsServiceProvider::class,
-            WidgetsServiceProvider::class,
-            LivewireServiceProvider::class,
+            InfolistsServiceProvider::class,
             NotificationsServiceProvider::class,
-            SupportServiceProvider::class,
             SchemasServiceProvider::class,
+            SupportServiceProvider::class,
             TablesServiceProvider::class,
+            WidgetsServiceProvider::class,
+            TranslatableServiceProvider::class,
+            TranslatableStringsServiceProvider::class,
             ExcelServiceProvider::class,
         ];
+
+        sort($providers);
+
+        return $providers;
     }
 
     public function getEnvironmentSetUp($app)

@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('scope')->nullable();
             $table->string('name');
             $table->string('key')->nullable();
-            $table->json('value');
+            $table->json('value')->nullable();
             $table->boolean('is_html');
         });
     }
