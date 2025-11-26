@@ -125,17 +125,21 @@ class ExtractTranslatableStrings
     {
         TranslatableString::flushEventListeners();
 
-        $translatableString = TranslatableString::updateOrCreate([
+        $translatableString = TranslatableString::firstOrNew([
             'scope' => $scope,
             'name' => $name,
-        ], [
-            'key' => $key,
-            'is_html' => $isHtml,
         ]);
 
-        if ($translatableString->wasRecentlyCreated) {
+        // Set/update fields that should always be updated
+        $translatableString->key = $key;
+        $translatableString->is_html = $isHtml;
+
+        // Only set value on creation (not on update)
+        if (! $translatableString->exists) {
             $translatableString->value = $this->getValue($key);
         }
+
+        $translatableString->save();
     }
 
     public function getAllFunctions(): Collection
