@@ -135,7 +135,7 @@ class ExtractTranslatableStrings
         $translatableString->is_html = $isHtml;
 
         // Only set value on creation (not on update)
-        if (!$translatableString->exists) {
+        if (! $translatableString->exists) {
             $translatableString->value = $this->getValue($key);
         }
 
