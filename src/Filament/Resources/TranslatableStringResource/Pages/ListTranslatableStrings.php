@@ -20,7 +20,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ListTranslatableStrings extends ListRecords
 {
-    protected $listeners = ['refreshTable' => '$refresh'];
+    // protected $listeners = ['refreshTable' => '$refresh'];
 
     protected static string $resource = TranslatableStringResource::class;
 
@@ -43,7 +43,7 @@ class ListTranslatableStrings extends ListRecords
                     ->icon('heroicon-o-arrow-up-on-square')
                     ->action(fn (array $data) => $this->importStrings($data))
                     ->visible(fn (): bool => TranslatableStringResource::canCreate())
-                    ->form([
+                    ->schema([
                         FileUpload::make('file')
                             ->label(__('filament-translatable-strings::admin.file'))
                             ->disk('local'),

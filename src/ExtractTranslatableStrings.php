@@ -137,6 +137,7 @@ class ExtractTranslatableStrings
         // Only set value on creation (not on update)
         if (! $translatableString->exists) {
             $translatableString->value = $this->getValue($key);
+            $translatableString->save();
         }
 
         $translatableString->save();
