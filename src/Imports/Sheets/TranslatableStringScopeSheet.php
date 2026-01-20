@@ -1,14 +1,14 @@
 <?php
 
-namespace Codedor\TranslatableStrings\Imports\Sheets;
+namespace Wotz\TranslatableStrings\Imports\Sheets;
 
-use Codedor\LocaleCollection\Facades\LocaleCollection;
-use Codedor\LocaleCollection\Locale;
-use Codedor\TranslatableStrings\Jobs\ExportToLang;
-use Codedor\TranslatableStrings\Models\TranslatableString;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Wotz\LocaleCollection\Facades\LocaleCollection;
+use Wotz\LocaleCollection\Locale;
+use Wotz\TranslatableStrings\Jobs\ExportToLang;
+use Wotz\TranslatableStrings\Models\TranslatableString;
 
 class TranslatableStringScopeSheet implements ToCollection, WithHeadingRow
 {

@@ -1,15 +1,15 @@
 <?php
 
-namespace Codedor\TranslatableStrings;
+namespace Wotz\TranslatableStrings;
 
-use Codedor\LocaleCollection\Facades\LocaleCollection;
-use Codedor\LocaleCollection\Locale;
-use Codedor\TranslatableRoutes\Facades\TranslateRouteParts;
-use Codedor\TranslatableStrings\Models\TranslatableString;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Symfony\Component\Finder\Finder;
+use Wotz\LocaleCollection\Facades\LocaleCollection;
+use Wotz\LocaleCollection\Locale;
+use Wotz\TranslatableRoutes\Facades\TranslateRouteParts;
+use Wotz\TranslatableStrings\Models\TranslatableString;
 
 class ExtractTranslatableStrings
 {

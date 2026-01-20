@@ -1,13 +1,13 @@
 <?php
 
-namespace Codedor\TranslatableStrings;
+namespace Wotz\TranslatableStrings;
 
-use Codedor\LocaleCollection\Facades\LocaleCollection;
-use Codedor\LocaleCollection\Locale;
-use Codedor\TranslatableStrings\Models\TranslatableString;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Wotz\LocaleCollection\Facades\LocaleCollection;
+use Wotz\LocaleCollection\Locale;
+use Wotz\TranslatableStrings\Models\TranslatableString;
 
 class ExportToLang
 {

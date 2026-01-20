@@ -1,12 +1,12 @@
 <?php
 
-use Codedor\LocaleCollection\Facades\LocaleCollection;
-use Codedor\LocaleCollection\Locale;
-use Codedor\LocaleCollection\LocaleCollection as LocaleCollectionLocaleCollection;
-use Codedor\TranslatableStrings\ExtractTranslatableStrings;
-use Codedor\TranslatableStrings\Models\TranslatableString;
 use Illuminate\Translation\Translator;
 use Mockery\MockInterface;
+use Wotz\LocaleCollection\Facades\LocaleCollection;
+use Wotz\LocaleCollection\Locale;
+use Wotz\LocaleCollection\LocaleCollection as LocaleCollectionLocaleCollection;
+use Wotz\TranslatableStrings\ExtractTranslatableStrings;
+use Wotz\TranslatableStrings\Models\TranslatableString;
 
 beforeEach(function () {
     LocaleCollection::add(new Locale('nl'))

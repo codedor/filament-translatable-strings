@@ -1,10 +1,10 @@
 <?php
 
-namespace Codedor\TranslatableStrings\Tests\Fixtures\Database\Factories;
+namespace Wotz\TranslatableStrings\Tests\Fixtures\Database\Factories;
 
-use Codedor\TranslatableStrings\Tests\Fixtures\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Wotz\TranslatableStrings\Tests\Fixtures\Models\User;
 
 class UserFactory extends Factory
 {

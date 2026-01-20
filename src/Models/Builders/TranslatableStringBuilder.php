@@ -1,10 +1,10 @@
 <?php
 
-namespace Codedor\TranslatableStrings\Models\Builders;
+namespace Wotz\TranslatableStrings\Models\Builders;
 
-use Codedor\LocaleCollection\Facades\LocaleCollection;
-use Codedor\LocaleCollection\Locale;
 use Illuminate\Database\Eloquent\Builder;
+use Wotz\LocaleCollection\Facades\LocaleCollection;
+use Wotz\LocaleCollection\Locale;
 
 class TranslatableStringBuilder extends Builder
 {

@@ -1,11 +1,9 @@
 <?php
 
-namespace Codedor\TranslatableStrings\Tests;
+namespace Wotz\TranslatableStrings\Tests;
 
 use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
-use Codedor\TranslatableStrings\Providers\TranslatableStringsServiceProvider;
-use Codedor\TranslatableTabs\Providers\TranslatableTabsServiceProvider;
 use Filament\Actions\ActionsServiceProvider;
 use Filament\FilamentServiceProvider;
 use Filament\Forms\FormsServiceProvider;
@@ -20,6 +18,8 @@ use Maatwebsite\Excel\ExcelServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
 use Spatie\Translatable\TranslatableServiceProvider;
+use Wotz\TranslatableStrings\Providers\TranslatableStringsServiceProvider;
+use Wotz\TranslatableTabs\Providers\TranslatableTabsServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -63,7 +63,7 @@ class TestCase extends Orchestra
         $panel
             ->id('resource-test')
             ->default(true)
-            ->plugin(\Codedor\TranslatableStrings\TranslatableStringsPlugin::make());
+            ->plugin(\Wotz\TranslatableStrings\TranslatableStringsPlugin::make());
 
         \Filament\Facades\Filament::registerPanel($panel);
     }

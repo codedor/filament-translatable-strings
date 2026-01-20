@@ -1,13 +1,13 @@
 <?php
 
-namespace Codedor\TranslatableStrings\Jobs;
+namespace Wotz\TranslatableStrings\Jobs;
 
-use Codedor\TranslatableStrings\ExportToLang as TranslatableStringsExportToLang;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\Middleware\Skip;
+use Wotz\TranslatableStrings\ExportToLang as TranslatableStringsExportToLang;
 
 class ExportToLang implements ShouldQueue
 {

@@ -1,13 +1,7 @@
 <?php
 
-namespace Codedor\TranslatableStrings\Filament\Resources;
+namespace Wotz\TranslatableStrings\Filament\Resources;
 
-use Codedor\LocaleCollection\Facades\LocaleCollection;
-use Codedor\LocaleCollection\Locale;
-use Codedor\TranslatableStrings\Filament\Resources\TranslatableStringResource\Pages;
-use Codedor\TranslatableStrings\Models\Builders\TranslatableStringBuilder;
-use Codedor\TranslatableStrings\Models\TranslatableString;
-use Codedor\TranslatableTabs\Forms\TranslatableTabs;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
@@ -22,6 +16,12 @@ use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
+use Wotz\LocaleCollection\Facades\LocaleCollection;
+use Wotz\LocaleCollection\Locale;
+use Wotz\TranslatableStrings\Filament\Resources\TranslatableStringResource\Pages;
+use Wotz\TranslatableStrings\Models\Builders\TranslatableStringBuilder;
+use Wotz\TranslatableStrings\Models\TranslatableString;
+use Wotz\TranslatableTabs\Forms\TranslatableTabs;
 
 class TranslatableStringResource extends Resource
 {
@@ -130,10 +130,10 @@ class TranslatableStringResource extends Resource
                     ->label(__('filament-translatable-strings::admin.scope'))
                     ->placeholder(__('filament-translatable-strings::admin.all scopes')),
             ])
-            ->actions([
+            ->recordActions([
                 \Filament\Actions\EditAction::make(),
             ])
-            ->bulkActions([])
+            ->toolbarActions([])
             ->paginated([25, 50, 100]);
     }
 
