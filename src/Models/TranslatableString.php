@@ -1,14 +1,14 @@
 <?php
 
-namespace Codedor\TranslatableStrings\Models;
+namespace Wotz\TranslatableStrings\Models;
 
-use Codedor\TranslatableStrings\ExtractTranslatableStrings;
-use Codedor\TranslatableStrings\Jobs\ExportToLang;
-use Codedor\TranslatableStrings\Models\Builders\TranslatableStringBuilder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Spatie\Translatable\HasTranslations;
+use Wotz\TranslatableStrings\ExtractTranslatableStrings;
+use Wotz\TranslatableStrings\Jobs\ExportToLang;
+use Wotz\TranslatableStrings\Models\Builders\TranslatableStringBuilder;
 
 /**
  * @property string $scope

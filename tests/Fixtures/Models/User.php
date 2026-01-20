@@ -1,12 +1,12 @@
 <?php
 
-namespace Codedor\TranslatableStrings\Tests\Fixtures\Models;
+namespace Wotz\TranslatableStrings\Tests\Fixtures\Models;
 
-use Codedor\TranslatableStrings\Tests\Fixtures\Database\Factories\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Wotz\TranslatableStrings\Tests\Fixtures\Database\Factories\UserFactory;
 
 class User extends Authenticatable implements FilamentUser
 {

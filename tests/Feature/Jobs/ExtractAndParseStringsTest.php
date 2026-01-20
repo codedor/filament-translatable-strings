@@ -1,8 +1,8 @@
 <?php
 
-use Codedor\TranslatableStrings\ExtractTranslatableStrings;
-use Codedor\TranslatableStrings\Jobs\ExtractAndParseStrings;
 use Mockery\MockInterface;
+use Wotz\TranslatableStrings\ExtractTranslatableStrings;
+use Wotz\TranslatableStrings\Jobs\ExtractAndParseStrings;
 
 it('can dispatch extract and parse', function () {
     $this->instance(

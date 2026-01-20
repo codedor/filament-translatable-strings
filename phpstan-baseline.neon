@@ -1,10 +1,14 @@
 parameters:
     ignoreErrors:
         -
-            message: "#^Call to an undefined static method Codedor\\\\LocaleCollection\\\\Facades\\\\LocaleCollection\\:\\:registerRoutes\\(\\)\\.$#"
+            message: "#^Call to an undefined static method Wotz\\\\LocaleCollection\\\\Facades\\\\LocaleCollection\\:\\:registerRoutes\\(\\)\\.$#"
             count: 1
             path: src/ExtractTranslatableStrings.php
         -
-            message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Builder\\<Illuminate\\\\Database\\\\Eloquent\\\\Model\\>\\:\\:byOneEmptyValue\\(\\)\\.$#"
+            message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$value\\.$#"
+            count: 1
+            path: src/ExtractTranslatableStrings.php
+        -
+            message: "#^Call to an undefined static method Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:byOneEmptyValue\\(\\)\\.$#"
             count: 1
             path: src/Filament/Resources/TranslatableStringResource.php

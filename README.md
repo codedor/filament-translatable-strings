@@ -7,7 +7,7 @@ Package to manage the lang files in [Filament](https://filamentphp.com/) with im
 You can install the package via composer:
 
 ```bash
-composer require codedor/filament-translatable-strings
+composer require wotz/filament-translatable-strings
 ```
 
 You can publish and run the migrations with:
@@ -58,7 +58,7 @@ public function panel(Panel $panel): Panel
 {
     return $panel
         ->plugins([
-            \Codedor\TranslatableStrings\TranslatableStringsPlugin::make(),
+            \Wotz\TranslatableStrings\TranslatableStringsPlugin::make(),
         ]);
     }
 ```
@@ -68,19 +68,11 @@ In an effort to align with Filament's theming methodology you will need to use a
 > **Note**
 > If you have not set up a custom theme and are using a Panel follow the instructions in the [Filament Docs](https://filamentphp.com/docs/3.x/panels/themes#creating-a-custom-theme) first. The following applies to both the Panels Package and the standalone Forms package.
 
-1. Import the plugin's stylesheet (if not already included) into your theme's css file.
+1. Import the plugin's stylesheet and views into your theme's css file.
 
 ```css
-@import '../../../../vendor/codedor/filament-translatable-strings/resources/css/plugin.css';
-```
-
-2. Add the plugin's views to your `tailwind.config.js` file.
-
-```js
-content: [
-    ...
-    './vendor/codedor/filament-translatable-strings/resources/**/*.blade.php',
-]
+@import '../../../../vendor/wotz/filament-translatable-strings/resources/css/plugin.css';
+@source '../../../../vendor/wotz/filament-translatable-strings/resources/**/*.blade.php';
 ```
 
 ## Usage
@@ -113,7 +105,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
-If you discover any security-related issues, please email info@codedor.be instead of using the issue tracker.
+If you discover any security-related issues, please email info@whoownsthezebra.be instead of using the issue tracker.
 
 ## License
 

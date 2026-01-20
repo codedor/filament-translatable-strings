@@ -1,10 +1,10 @@
 <?php
 
-namespace Codedor\TranslatableStrings;
+namespace Wotz\TranslatableStrings;
 
-use Codedor\TranslatableStrings\Filament\Resources\TranslatableStringResource;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
+use Wotz\TranslatableStrings\Filament\Resources\TranslatableStringResource;
 
 class TranslatableStringsPlugin implements Plugin
 {

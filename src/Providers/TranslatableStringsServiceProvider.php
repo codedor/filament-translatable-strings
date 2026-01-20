@@ -1,11 +1,11 @@
 <?php
 
-namespace Codedor\TranslatableStrings\Providers;
+namespace Wotz\TranslatableStrings\Providers;
 
-use Codedor\TranslatableStrings\Console\Commands\ExportTranslationsToLang;
-use Codedor\TranslatableStrings\Console\Commands\ExtractAndParseTranslatableStrings;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Wotz\TranslatableStrings\Console\Commands\ExportTranslationsToLang;
+use Wotz\TranslatableStrings\Console\Commands\ExtractAndParseTranslatableStrings;
 
 class TranslatableStringsServiceProvider extends PackageServiceProvider
 {

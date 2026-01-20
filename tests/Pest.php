@@ -1,10 +1,10 @@
 <?php
 
-use Codedor\LocaleCollection\Facades\LocaleCollection;
-use Codedor\LocaleCollection\Locale;
-use Codedor\TranslatableStrings\Models\TranslatableString;
-use Codedor\TranslatableStrings\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Wotz\LocaleCollection\Facades\LocaleCollection;
+use Wotz\LocaleCollection\Locale;
+use Wotz\TranslatableStrings\Models\TranslatableString;
+use Wotz\TranslatableStrings\Tests\TestCase;
 
 uses(TestCase::class, RefreshDatabase::class)->in('Feature');
 

@@ -1,10 +1,10 @@
 <?php
 
-use Codedor\LocaleCollection\Facades\LocaleCollection;
-use Codedor\LocaleCollection\Locale;
-use Codedor\TranslatableStrings\Exports\Sheets\TranslatableStringsPerScopeSheet;
-use Codedor\TranslatableStrings\Exports\TranslatableStringsExport;
-use Codedor\TranslatableStrings\Models\TranslatableString;
+use Wotz\LocaleCollection\Facades\LocaleCollection;
+use Wotz\LocaleCollection\Locale;
+use Wotz\TranslatableStrings\Exports\Sheets\TranslatableStringsPerScopeSheet;
+use Wotz\TranslatableStrings\Exports\TranslatableStringsExport;
+use Wotz\TranslatableStrings\Models\TranslatableString;
 
 beforeEach(function () {
     LocaleCollection::push(new Locale('en'))
