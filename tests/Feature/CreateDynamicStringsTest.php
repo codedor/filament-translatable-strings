@@ -1,6 +1,6 @@
 <?php
 
-use Codedor\TranslatableStrings\Models\TranslatableString;
+use Wotz\TranslatableStrings\Models\TranslatableString;
 
 // beforeEach(function () {
 // })->skip('Need to find way to intercept missing keys without overriding the translator file');

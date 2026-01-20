@@ -1,10 +1,10 @@
 <?php
 
-use Codedor\TranslatableStrings\ExportToLang as TranslatableStringsExportToLang;
-use Codedor\TranslatableStrings\Jobs\ExportToLang;
 use Illuminate\Queue\Middleware\Skip;
 use Illuminate\Support\Facades\Queue;
 use Mockery\MockInterface;
+use Wotz\TranslatableStrings\ExportToLang as TranslatableStringsExportToLang;
+use Wotz\TranslatableStrings\Jobs\ExportToLang;
 
 it('can export for the given scope', function () {
     $this->instance(

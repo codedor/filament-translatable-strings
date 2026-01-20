@@ -1,6 +1,6 @@
 <div class="w-full">
     @php
-        $locales = \Codedor\LocaleCollection\Facades\LocaleCollection::map(fn ($locale) => $locale->locale());
+        $locales = \Wotz\LocaleCollection\Facades\LocaleCollection::map(fn ($locale) => $locale->locale());
         $livewire = $getLivewire();
         $resource = $livewire::getResource();
     @endphp

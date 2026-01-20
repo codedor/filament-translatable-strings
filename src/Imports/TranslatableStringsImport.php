@@ -1,12 +1,12 @@
 <?php
 
-namespace Codedor\TranslatableStrings\Imports;
+namespace Wotz\TranslatableStrings\Imports;
 
-use Codedor\TranslatableStrings\Imports\Sheets\TranslatableStringScopeSheet;
-use Codedor\TranslatableStrings\Models\TranslatableString;
 use Maatwebsite\Excel\Concerns\SkipsUnknownSheets;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use Maatwebsite\Excel\Imports\HeadingRowFormatter;
+use Wotz\TranslatableStrings\Imports\Sheets\TranslatableStringScopeSheet;
+use Wotz\TranslatableStrings\Models\TranslatableString;
 
 class TranslatableStringsImport implements SkipsUnknownSheets, WithMultipleSheets
 {

@@ -1,11 +1,11 @@
 <?php
 
-use Codedor\LocaleCollection\Facades\LocaleCollection;
-use Codedor\LocaleCollection\Locale;
-use Codedor\TranslatableStrings\ExtractTranslatableStrings;
-use Codedor\TranslatableStrings\Jobs\ExportToLang;
-use Codedor\TranslatableStrings\Models\TranslatableString;
 use Illuminate\Support\Facades\Queue;
+use Wotz\LocaleCollection\Facades\LocaleCollection;
+use Wotz\LocaleCollection\Locale;
+use Wotz\TranslatableStrings\ExtractTranslatableStrings;
+use Wotz\TranslatableStrings\Jobs\ExportToLang;
+use Wotz\TranslatableStrings\Models\TranslatableString;
 
 beforeEach(function () {
     LocaleCollection::add(new Locale('nl'))

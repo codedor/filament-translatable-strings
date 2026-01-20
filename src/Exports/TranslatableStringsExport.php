@@ -1,11 +1,11 @@
 <?php
 
-namespace Codedor\TranslatableStrings\Exports;
+namespace Wotz\TranslatableStrings\Exports;
 
-use Codedor\TranslatableStrings\Exports\Sheets\TranslatableStringsPerScopeSheet;
-use Codedor\TranslatableStrings\Models\TranslatableString;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
+use Wotz\TranslatableStrings\Exports\Sheets\TranslatableStringsPerScopeSheet;
+use Wotz\TranslatableStrings\Models\TranslatableString;
 
 class TranslatableStringsExport implements WithMultipleSheets
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Codedor\TranslatableStrings\Jobs;
+namespace Wotz\TranslatableStrings\Jobs;
 
-use Codedor\TranslatableStrings\ExtractTranslatableStrings;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
+use Wotz\TranslatableStrings\ExtractTranslatableStrings;
 
 class ExtractAndParseStrings implements ShouldQueue
 {

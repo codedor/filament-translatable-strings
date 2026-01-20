@@ -1,7 +1,7 @@
 <?php
 
-use Codedor\TranslatableStrings\Jobs\ExtractAndParseStrings;
 use Illuminate\Support\Facades\Queue;
+use Wotz\TranslatableStrings\Jobs\ExtractAndParseStrings;
 
 it('can run the command', function () {
     Queue::fake();

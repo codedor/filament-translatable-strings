@@ -1,12 +1,7 @@
 <?php
 
-namespace Codedor\TranslatableStrings\Filament\Resources\TranslatableStringResource\Pages;
+namespace Wotz\TranslatableStrings\Filament\Resources\TranslatableStringResource\Pages;
 
-use Codedor\TranslatableStrings\Exports\TranslatableStringsExport;
-use Codedor\TranslatableStrings\Filament\Resources\TranslatableStringResource;
-use Codedor\TranslatableStrings\Imports\TranslatableStringsImport;
-use Codedor\TranslatableStrings\Jobs\ExtractAndParseStrings;
-use Codedor\TranslatableStrings\Models\TranslatableString;
 use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
 use Filament\Forms\Components\Checkbox;
@@ -17,10 +12,15 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
+use Wotz\TranslatableStrings\Exports\TranslatableStringsExport;
+use Wotz\TranslatableStrings\Filament\Resources\TranslatableStringResource;
+use Wotz\TranslatableStrings\Imports\TranslatableStringsImport;
+use Wotz\TranslatableStrings\Jobs\ExtractAndParseStrings;
+use Wotz\TranslatableStrings\Models\TranslatableString;
 
 class ListTranslatableStrings extends ListRecords
 {
-    protected $listeners = ['refreshTable' => '$refresh'];
+    // protected $listeners = ['refreshTable' => '$refresh'];
 
     protected static string $resource = TranslatableStringResource::class;
 
@@ -43,7 +43,7 @@ class ListTranslatableStrings extends ListRecords
                     ->icon('heroicon-o-arrow-up-on-square')
                     ->action(fn (array $data) => $this->importStrings($data))
                     ->visible(fn (): bool => TranslatableStringResource::canCreate())
-                    ->form([
+                    ->schema([
                         FileUpload::make('file')
                             ->label(__('filament-translatable-strings::admin.file'))
                             ->disk('local'),

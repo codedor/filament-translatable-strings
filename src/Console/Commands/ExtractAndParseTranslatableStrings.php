@@ -1,9 +1,9 @@
 <?php
 
-namespace Codedor\TranslatableStrings\Console\Commands;
+namespace Wotz\TranslatableStrings\Console\Commands;
 
-use Codedor\TranslatableStrings\Jobs\ExtractAndParseStrings;
 use Illuminate\Console\Command;
+use Wotz\TranslatableStrings\Jobs\ExtractAndParseStrings;
 
 class ExtractAndParseTranslatableStrings extends Command
 {

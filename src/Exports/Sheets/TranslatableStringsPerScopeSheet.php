@@ -1,10 +1,7 @@
 <?php
 
-namespace Codedor\TranslatableStrings\Exports\Sheets;
+namespace Wotz\TranslatableStrings\Exports\Sheets;
 
-use Codedor\LocaleCollection\Facades\LocaleCollection;
-use Codedor\LocaleCollection\Locale;
-use Codedor\TranslatableStrings\Models\TranslatableString;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\FromQuery;
@@ -12,6 +9,9 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithTitle;
+use Wotz\LocaleCollection\Facades\LocaleCollection;
+use Wotz\LocaleCollection\Locale;
+use Wotz\TranslatableStrings\Models\TranslatableString;
 
 class TranslatableStringsPerScopeSheet implements FromQuery, ShouldAutoSize, WithHeadings, WithMapping, WithTitle
 {

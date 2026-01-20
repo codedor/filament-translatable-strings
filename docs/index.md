@@ -13,7 +13,7 @@ It is also fully integrated with the Filament admin panel, making it easy to man
 First, install this package via the Composer package manager:
 
 ```bash
-composer require codedor/filament-translatable-strings
+composer require wotz/filament-translatable-strings
 ```
 
 After that you can publish and run the migrations with:
@@ -31,11 +31,11 @@ php artisan vendor:publish --tag="filament-translatable-strings-config"
 
 See the [Configuration](#configuration) section for more information.
 
-Behind the scenes we use the [Locale Collection](https://github.com/codedor/laravel-locale-collection) package. So do not forget to define locales in your provider.
+Behind the scenes we use the [Locale Collection](https://github.com/wotzebra/laravel-locale-collection) package. So do not forget to define locales in your provider.
 
 ```php
-use Codedor\LocaleCollection\Facades\LocaleCollection;
-use Codedor\LocaleCollection\Locale;
+use Wotz\LocaleCollection\Facades\LocaleCollection;
+use Wotz\LocaleCollection\Locale;
 
 LocaleCollection::add(new Locale('nl'))
     ->add(new Locale('en'));
@@ -48,7 +48,7 @@ public function panel(Panel $panel): Panel
 {
     return $panel
         ->plugins([
-            \Codedor\TranslatableStrings\TranslatableStringsPlugin::make(),
+            \Wotz\TranslatableStrings\TranslatableStringsPlugin::make(),
         ]);
     }
 ```
@@ -58,19 +58,10 @@ In an effort to align with Filament's theming methodology you will need to use a
 > **Note**
 > If you have not set up a custom theme and are using a Panel follow the instructions in the [Filament Docs](https://filamentphp.com/docs/3.x/panels/themes#creating-a-custom-theme) first. The following applies to both the Panels Package and the standalone Forms package.
 
-1. Import the plugin's stylesheet (if not already included) into your theme's css file.
+1. Import the plugin's views into your theme's css file.
 
 ```css
-@import '../../../../vendor/codedor/filament-translatable-strings/resources/css/plugin.css';
-```
-
-2. Add the plugin's views to your `tailwind.config.js` file.
-
-```js
-content: [
-    ...
-    './vendor/codedor/filament-translatable-strings/resources/**/*.blade.php',
-]
+@source '../../../../vendor/wotz/filament-translatable-strings/resources/**/*.blade.php';
 ```
 
 ## Commands

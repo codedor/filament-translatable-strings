@@ -1,16 +1,14 @@
 <?php
 
-namespace Codedor\TranslatableStrings\Models;
+namespace Wotz\TranslatableStrings\Models;
 
-use Codedor\LocaleCollection\Facades\LocaleCollection;
-use Codedor\LocaleCollection\Locale;
-use Codedor\TranslatableStrings\ExtractTranslatableStrings;
-use Codedor\TranslatableStrings\Jobs\ExportToLang;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Spatie\Translatable\HasTranslations;
+use Wotz\TranslatableStrings\ExtractTranslatableStrings;
+use Wotz\TranslatableStrings\Jobs\ExportToLang;
+use Wotz\TranslatableStrings\Models\Builders\TranslatableStringBuilder;
 
 /**
  * @property string $scope
@@ -28,33 +26,6 @@ class TranslatableString extends Model
     protected $translatable = ['value'];
 
     protected $fillable = ['scope', 'name', 'key', 'is_html', 'value'];
-
-    public function scopeByOneEmptyValue(Builder $query): void
-    {
-        $query->orWhere(
-            fn ($query) => LocaleCollection::each(
-                fn (Locale $locale) => $query->orWhereNull("value->{$locale->locale()}")
-            )
-        );
-    }
-
-    public function scopeByAllEmptyValues(Builder $query): void
-    {
-        $query->where(
-            fn ($query) => LocaleCollection::each(
-                fn (Locale $locale) => $query->whereNull("value->{$locale->locale()}")
-            )
-        );
-    }
-
-    public function scopeByFilledInValues(Builder $query): void
-    {
-        $query->where(
-            fn ($query) => LocaleCollection::each(
-                fn (Locale $locale) => $query->whereNotNull("value->{$locale->locale()}")
-            )
-        );
-    }
 
     public function getCleanScopeAttribute(): string
     {
@@ -99,5 +70,10 @@ class TranslatableString extends Model
     public static function booted()
     {
         self::updated(fn (self $record) => ExportToLang::dispatch($record->scope));
+    }
+
+    public function newEloquentBuilder($query): TranslatableStringBuilder
+    {
+        return new TranslatableStringBuilder($query);
     }
 }

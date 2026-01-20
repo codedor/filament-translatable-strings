@@ -1,6 +1,6 @@
 <?php
 
-namespace Codedor\Translations\Tests\Http\Controllers;
+namespace Wotz\Translations\Tests\Http\Controllers;
 
 use Illuminate\Support\Facades\Lang;
 

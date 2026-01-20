@@ -1,11 +1,11 @@
 <?php
 
-use Codedor\LocaleCollection\Facades\LocaleCollection;
-use Codedor\LocaleCollection\Locale;
-use Codedor\TranslatableStrings\Imports\Sheets\TranslatableStringScopeSheet;
-use Codedor\TranslatableStrings\Jobs\ExportToLang;
-use Codedor\TranslatableStrings\Models\TranslatableString;
 use Illuminate\Support\Facades\Queue;
+use Wotz\LocaleCollection\Facades\LocaleCollection;
+use Wotz\LocaleCollection\Locale;
+use Wotz\TranslatableStrings\Imports\Sheets\TranslatableStringScopeSheet;
+use Wotz\TranslatableStrings\Jobs\ExportToLang;
+use Wotz\TranslatableStrings\Models\TranslatableString;
 
 beforeEach(function () {
     LocaleCollection::push(new Locale('en'))

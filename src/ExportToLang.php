@@ -1,13 +1,13 @@
 <?php
 
-namespace Codedor\TranslatableStrings;
+namespace Wotz\TranslatableStrings;
 
-use Codedor\LocaleCollection\Facades\LocaleCollection;
-use Codedor\LocaleCollection\Locale;
-use Codedor\TranslatableStrings\Models\TranslatableString;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Wotz\LocaleCollection\Facades\LocaleCollection;
+use Wotz\LocaleCollection\Locale;
+use Wotz\TranslatableStrings\Models\TranslatableString;
 
 class ExportToLang
 {
@@ -19,7 +19,7 @@ class ExportToLang
     {
         TranslatableString::distinct()
             ->get('scope')
-            ->each(fn ($scope) => $this->export($scope->scope));
+            ->each(fn (TranslatableString $scope) => $this->export($scope->scope));
     }
 
     public function export(string $scope)
@@ -70,7 +70,7 @@ class ExportToLang
 
         return LocaleCollection::mapToGroups(fn (Locale $locale) => [
             $locale->locale() => $translatableStrings
-                ->mapWithKeys(fn ($translatableString) => [
+                ->mapWithKeys(fn (TranslatableString $translatableString) => [
                     $translatableString->name => $translatableString->getTranslation('value', $locale->locale(), false),
                 ])
                 ->filter(),
