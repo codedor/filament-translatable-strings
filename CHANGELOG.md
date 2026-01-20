@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2.0.0 - 2026-01-20
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.4.0 to 2.5.0 by @dependabot[bot] in https://github.com/codedor/filament-translatable-strings/pull/32
+* Upgrade to Filament v4 by @jyrkidn in https://github.com/codedor/filament-translatable-strings/pull/23
+* Upgrade to Filament v5 by @jyrkidn in https://github.com/codedor/filament-translatable-strings/pull/29
+
+**Full Changelog**: https://github.com/codedor/filament-translatable-strings/compare/v1.3.1...v2.0.0
+
 ## v1.3.1 - 2025-11-26
 
 ### What's Changed
